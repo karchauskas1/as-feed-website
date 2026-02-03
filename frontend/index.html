@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>АС-ФИД — Корма для аквакультуры нового поколения</title>
+  <meta name="description" content="АС-ФИД — российский производитель экструдированных кормов для аквакультуры. Высокоэффективные корма для форели, осётра, карпа, сома и тилапии.">
+  <meta name="keywords" content="корма для рыбы, аквакультура, экструдированные корма, корм для форели, корм для осётра, АС-ФИД">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="АС-ФИД — Корма для аквакультуры нового поколения">
+  <meta property="og:description" content="Российский производитель экструдированных кормов для рыбоводства">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://as-feed.ru">
+  <meta property="og:locale" content="ru_RU">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "АС-ФИД",
+    "description": "Российский производитель экструдированных кормов для аквакультуры",
+    "url": "https://as-feed.ru",
+    "logo": "https://as-feed.ru/images/logo.svg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+7-XXX-XXX-XX-XX",
+      "contactType": "sales",
+      "areaServed": "RU",
+      "availableLanguage": "Russian"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#home" class="logo" onclick="showPage('home')">
+          <div class="logo-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 4C10 4 5 8 4 14C3 20 6 26 12 28C14 29 16 29 18 28C22 27 25 24 27 20C29 16 28 11 25 8C22 5 19 4 16 4Z" fill="currentColor"/>
+              <circle cx="10" cy="14" r="2" fill="#1A1F36"/>
+              <path d="M14 18C16 20 20 20 22 18" stroke="#1A1F36" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="logo-text-wrap">
+            <div class="logo-text">АС-ФИД</div>
+            <div class="logo-sub">Корма для аквакультуры</div>
+          </div>
+        </a>
+
+        <nav class="nav" id="mainNav">
+          <a href="#home" class="nav-link active" data-page="home">Главная</a>
+          <a href="#about" class="nav-link" data-page="about">О компании</a>
+          <a href="#catalog" class="nav-link" data-page="catalog">Каталог</a>
+          <a href="#partners" class="nav-link" data-page="partners">Партнёры</a>
+          <a href="#contacts" class="nav-link" data-page="contacts">Контакты</a>
+          <button class="nav-cta" onclick="showPage('contacts')">Оставить заявку</button>
+        </nav>
+
+        <button class="burger" id="burger" aria-label="Меню">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav">
+      <a href="#home" class="mobile-nav-link active" data-page="home">Главная</a>
+      <a href="#about" class="mobile-nav-link" data-page="about">О компании</a>
+      <a href="#catalog" class="mobile-nav-link" data-page="catalog">Каталог</a>
+      <a href="#partners" class="mobile-nav-link" data-page="partners">Партнёры</a>
+      <a href="#contacts" class="mobile-nav-link" data-page="contacts">Контакты</a>
+      <button class="mobile-nav-cta" onclick="showPage('contacts'); closeMobileMenu();">Оставить заявку</button>
+    </nav>
+  </div>
+
+  <main>
+    <!-- HOME PAGE -->
+    <section id="page-home" class="page active">
+      <div class="hero">
+        <div class="hero-deco"></div>
+        <div class="container hero-container">
+          <div class="hero-content">
+            <div class="hero-label">
+              <div class="hero-label-dot"></div>
+              Российское производство
+            </div>
+            <h1>Корма для <span class="green">аквакультуры</span> нового поколения</h1>
+            <p class="hero-desc">АС-ФИД — российский производитель экструдированных кормов для аквакультуры и сельскохозяйственных животных. Мы создаём высокоэффективные, экологически безопасные и экономически выгодные корма для промышленного и фермерского рыбоводства.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" onclick="showPage('contacts')">
+                Оставить заявку
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button class="btn btn-outline" onclick="showPage('catalog')">Смотреть каталог</button>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-img">
+              <svg class="hero-fish-icon" viewBox="0 0 200 150" fill="none">
+                <ellipse cx="100" cy="75" rx="70" ry="45" fill="url(#fishGradient)"/>
+                <path d="M30 75C10 55 10 95 30 75" fill="var(--secondary)"/>
+                <circle cx="140" cy="65" r="8" fill="#1A1F36"/>
+                <circle cx="142" cy="63" r="3" fill="white"/>
+                <path d="M80 85C100 95 130 95 150 85" stroke="#1A1F36" stroke-width="3" stroke-linecap="round"/>
+                <path d="M60 60C70 50 90 45 100 50" stroke="var(--teal)" stroke-width="2" opacity="0.5"/>
+                <path d="M60 90C70 100 90 105 100 100" stroke="var(--teal)" stroke-width="2" opacity="0.5"/>
+                <defs>
+                  <linearGradient id="fishGradient" x1="30" y1="30" x2="170" y2="120">
+                    <stop offset="0%" stop-color="var(--secondary)"/>
+                    <stop offset="100%" stop-color="var(--teal)"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="hero-float-card hero-float-1">
+              <div class="hero-float-value">6+</div>
+              <div class="hero-float-label">Видов кормов</div>
+            </div>
+            <div class="hero-float-card hero-float-2">
+              <div class="hero-float-value">100%</div>
+              <div class="hero-float-label">Российское сырьё</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-value">5+</div>
+            <div class="stat-label">Видов рыб в ассортименте</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">1000+</div>
+            <div class="stat-label">Тонн в месяц мощность</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">РФ</div>
+            <div class="stat-label">Доставка по всей России</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advantages Section -->
+      <section class="features-section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-tag">Преимущества</div>
+            <h2 class="section-title">Почему выбирают АС-ФИД</h2>
+            <p class="section-desc">Современное производство с контролем качества на каждом этапе</p>
+          </div>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-number">01</div>
+              <div class="feature-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                </svg>
+              </div>
+              <h3>Экономическая эффективность</h3>
+              <p>Сокращение затрат за счёт высокой усвояемости и стабильного качества кормов</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-number">02</div>
+              <div class="feature-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 12l2 2 4-4"/>
+                  <circle cx="12" cy="12" r="10"/>
+                </svg>
+              </div>
+              <h3>Высокая питательная ценность</h3>
+              <p>Оптимальное соотношение белков, жиров, витаминов и микроэлементов</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-number">03</div>
+              <div class="feature-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+              </div>
+              <h3>Технология экструзии</h3>
+              <p>Улучшенная перевариваемость, уничтожение патогенов, высокая биодоступность</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-number">04</div>
+              <div class="feature-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <h3>Контроль качества</h3>
+              <p>Лабораторный анализ сырья и готовой продукции на всех этапах производства</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-number">05</div>
+              <div class="feature-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <h3>Адаптивность рецептур</h3>
+              <p>Рецептуры под конкретные виды рыб, возраст и условия содержания</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-number">06</div>
+              <div class="feature-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                  <path d="M7 12l3 3 7-7"/>
+                </svg>
+              </div>
+              <h3>Экологическая безопасность</h3>
+              <p>Минимизация отходов, водостойкость гранул, сохранение чистоты водоёмов</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ABOUT PAGE -->
+    <section id="page-about" class="page">
+      <div class="page-hero">
+        <div class="container">
+          <div class="section-tag">О нас</div>
+          <h1>О компании АС-ФИД</h1>
+          <p>Инновационный стартап в сфере производства кормов для аквакультуры</p>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-visual">
+              <div class="about-image">
+                <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+                  <rect x="20" y="60" width="160" height="100" rx="10" fill="var(--bg-card)" stroke="var(--secondary)" stroke-width="2"/>
+                  <rect x="40" y="40" width="120" height="20" rx="5" fill="var(--secondary)"/>
+                  <circle cx="60" cy="110" r="20" fill="var(--secondary)" opacity="0.3"/>
+                  <circle cx="100" cy="110" r="20" fill="var(--teal)" opacity="0.3"/>
+                  <circle cx="140" cy="110" r="20" fill="var(--secondary)" opacity="0.3"/>
+                  <path d="M50 140h100" stroke="var(--border)" stroke-width="2"/>
+                  <path d="M60 150h80" stroke="var(--border)" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="about-badge">
+                <div class="about-badge-value">2025</div>
+                <div class="about-badge-label">Год основания</div>
+              </div>
+            </div>
+            <div class="about-content">
+              <h2>Производство кормов нового поколения</h2>
+              <p>ООО «АС-ФИД» — российский производитель бионатуральных инновационных кормов для аквакультуры и сельскохозяйственных животных. Мы не просто технологическая компания, а инновационный стартап, специализирующийся на разработке и производстве экструдированных гранулированных кормов нового поколения.</p>
+              <p>Компания выстраивает полный производственный цикл: от подбора сырья и разработки рецептур до промышленного выпуска, лабораторного контроля качества и логистики.</p>
+              <p>Наш подход — это сочетание науки, современных технологий и практического опыта. Мы производим корма, которые ускоряют рост рыбы, снижают себестоимость выращивания и повышают устойчивость хозяйств к внешним рискам.</p>
+              <ul class="about-list">
+                <li>Современные биотехнологии в производстве</li>
+                <li>Научно обоснованные рецептуры кормов</li>
+                <li>Переработка вторичного сельскохозяйственного сырья</li>
+                <li>Строгий контроль качества на всех этапах</li>
+                <li>Ориентация на снижение издержек клиента</li>
+                <li>Поддержка инвестиционных фондов</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mission Section -->
+      <div class="mission-section">
+        <div class="container">
+          <div class="mission-card">
+            <h3>Наша миссия</h3>
+            <p>Обеспечить российское рыбоводство качественными, доступными и экологически безопасными кормами, способствуя развитию отечественной аквакультуры и продовольственной безопасности страны.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATALOG PAGE -->
+    <section id="page-catalog" class="page">
+      <div class="page-hero">
+        <div class="container">
+          <div class="section-tag">Продукция</div>
+          <h1>Каталог кормов</h1>
+          <p>Полнорационные экструдированные корма для различных видов рыб</p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="catalog-filters">
+          <button class="filter-btn active" data-filter="all">Все корма</button>
+          <button class="filter-btn" data-filter="trout">Форель</button>
+          <button class="filter-btn" data-filter="sturgeon">Осётр</button>
+          <button class="filter-btn" data-filter="carp">Карп</button>
+          <button class="filter-btn" data-filter="catfish">Сом</button>
+          <button class="filter-btn" data-filter="tilapia">Тилапия</button>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <!-- Форель -->
+          <article class="product-card" data-category="trout">
+            <div class="product-image">
+              <svg class="product-fish" viewBox="0 0 80 60" fill="none">
+                <ellipse cx="40" cy="30" rx="30" ry="18" fill="url(#troutGrad)"/>
+                <circle cx="58" cy="26" r="4" fill="#1A1F36"/>
+                <defs><linearGradient id="troutGrad" x1="10" y1="12" x2="70" y2="48"><stop offset="0%" stop-color="#F97316"/><stop offset="100%" stop-color="#FB923C"/></linearGradient></defs>
+              </svg>
+              <span class="product-badge">Хит продаж</span>
+            </div>
+            <div class="product-content">
+              <div class="product-category">Форель</div>
+              <h3 class="product-title">Форель Старт 55/18</h3>
+              <p class="product-desc">Стартовый корм для молоди форели. Высокое содержание протеина для активного роста.</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">55%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">18%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">0.5-1.5мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Форель Старт 55/18')">Оставить заявку</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="trout">
+            <div class="product-image">
+              <svg class="product-fish" viewBox="0 0 80 60" fill="none">
+                <ellipse cx="40" cy="30" rx="30" ry="18" fill="url(#troutGrad2)"/>
+                <circle cx="58" cy="26" r="4" fill="#1A1F36"/>
+                <defs><linearGradient id="troutGrad2" x1="10" y1="12" x2="70" y2="48"><stop offset="0%" stop-color="#F97316"/><stop offset="100%" stop-color="#FB923C"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div class="product-content">
+              <div class="product-category">Форель</div>
+              <h3 class="product-title">Форель Гроу 48/22</h3>
+              <p class="product-desc">Продукционный корм для активного роста товарной форели.</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">48%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">22%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">2-4мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Форель Гроу 48/22')">Оставить заявку</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="trout">
+            <div class="product-image">
+              <svg class="product-fish" viewBox="0 0 80 60" fill="none">
+                <ellipse cx="40" cy="30" rx="30" ry="18" fill="url(#troutGrad3)"/>
+                <circle cx="58" cy="26" r="4" fill="#1A1F36"/>
+                <defs><linearGradient id="troutGrad3" x1="10" y1="12" x2="70" y2="48"><stop offset="0%" stop-color="#F97316"/><stop offset="100%" stop-color="#FB923C"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div class="product-content">
+              <div class="product-category">Форель</div>
+              <h3 class="product-title">Форель Финиш 45/20</h3>
+              <p class="product-desc">Финишный корм для подготовки форели к реализации.</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">45%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">20%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">4-8мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Форель Финиш 45/20')">Оставить заявку</button>
+            </div>
+          </article>
+
+          <!-- Осётр -->
+          <article class="product-card" data-category="sturgeon">
+            <div class="product-image">
+              <svg class="product-fish" viewBox="0 0 80 60" fill="none">
+                <ellipse cx="40" cy="30" rx="35" ry="15" fill="url(#sturgeonGrad)"/>
+                <circle cx="62" cy="28" r="3" fill="#1A1F36"/>
+                <defs><linearGradient id="sturgeonGrad" x1="5" y1="15" x2="75" y2="45"><stop offset="0%" stop-color="#6B7280"/><stop offset="100%" stop-color="#9CA3AF"/></linearGradient></defs>
+              </svg>
+              <span class="product-badge new">Новинка</span>
+            </div>
+            <div class="product-content">
+              <div class="product-category">Осётр</div>
+              <h3 class="product-title">Осётр Старт 52/18</h3>
+              <p class="product-desc">Стартовый корм для молоди осетровых видов рыб.</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">52%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">18%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">1-2.5мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Осётр Старт 52/18')">Оставить заявку</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="sturgeon">
+            <div class="product-image">
+              <svg class="product-fish" viewBox="0 0 80 60" fill="none">
+                <ellipse cx="40" cy="30" rx="35" ry="15" fill="url(#sturgeonGrad2)"/>
+                <circle cx="62" cy="28" r="3" fill="#1A1F36"/>
+                <defs><linearGradient id="sturgeonGrad2" x1="5" y1="15" x2="75" y2="45"><stop offset="0%" stop-color="#6B7280"/><stop offset="100%" stop-color="#9CA3AF"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div class="product-content">
+              <div class="product-category">Осётр</div>
+              <h3 class="product-title">Осётр Гроу 48/16</h3>
+              <p class="product-desc">Продукционный корм для товарного осетра.</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">48%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">16%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">4-8мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Осётр Гроу 48/16')">Оставить заявку</button>
+            </div>
+          </article>
+
+          <!-- Карп -->
+          <article class="product-card" data-category="carp">
+            <div class="product-image">
+              <svg class="product-fish" viewBox="0 0 80 60" fill="none">
+                <ellipse cx="40" cy="30" rx="28" ry="20" fill="url(#carpGrad)"/>
+                <circle cx="55" cy="26" r="4" fill="#1A1F36"/>
+                <defs><linearGradient id="carpGrad" x1="12" y1="10" x2="68" y2="50"><stop offset="0%" stop-color="#D97706"/><stop offset="100%" stop-color="#F59E0B"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div class="product-content">
+              <div class="product-category">Карп</div>
+              <h3 class="product-title">Карп Универсал 32/6</h3>
+              <p class="product-desc">Универсальный продукционный корм для карповых.</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">32%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">6%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">3-6мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Карп Универсал 32/6')">Оставить заявку</button>
+            </div>
+          </article>
+
+          <!-- Сом -->
+          <article class="product-card" data-category="catfish">
+            <div class="product-image">
+              <svg class="product-fish" viewBox="0 0 80 60" fill="none">
+                <ellipse cx="40" cy="32" rx="32" ry="14" fill="url(#catfishGrad)"/>
+                <circle cx="60" cy="30" r="3" fill="#1A1F36"/>
+                <path d="M15 25 L5 20 M15 28 L5 28 M15 31 L5 36" stroke="#4B5563" stroke-width="2"/>
+                <defs><linearGradient id="catfishGrad" x1="8" y1="18" x2="72" y2="46"><stop offset="0%" stop-color="#374151"/><stop offset="100%" stop-color="#6B7280"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div class="product-content">
+              <div class="product-category">Сом</div>
+              <h3 class="product-title">Сом Гроу 40/10</h3>
+              <p class="product-desc">Специализированный корм для сомовых видов рыб.</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">40%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">10%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">4-8мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Сом Гроу 40/10')">Оставить заявку</button>
+            </div>
+          </article>
+
+          <!-- Тилапия -->
+          <article class="product-card" data-category="tilapia">
+            <div class="product-image">
+              <svg class="product-fish" viewBox="0 0 80 60" fill="none">
+                <ellipse cx="40" cy="30" rx="26" ry="18" fill="url(#tilapiaGrad)"/>
+                <circle cx="54" cy="26" r="4" fill="#1A1F36"/>
+                <defs><linearGradient id="tilapiaGrad" x1="14" y1="12" x2="66" y2="48"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#10B981"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div class="product-content">
+              <div class="product-category">Тилапия</div>
+              <h3 class="product-title">Тилапия Гроу 35/8</h3>
+              <p class="product-desc">Продукционный корм для тилапии в условиях УЗВ.</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">35%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">8%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">3-5мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Тилапия Гроу 35/8')">Оставить заявку</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS PAGE -->
+    <section id="page-partners" class="page">
+      <div class="page-hero">
+        <div class="container">
+          <div class="section-tag">Сотрудничество</div>
+          <h1>Партнёры и инвесторы</h1>
+          <p>Нас поддерживают ведущие фонды и программы развития</p>
+        </div>
+      </div>
+
+      <div class="partners-section">
+        <div class="container">
+          <div class="partners-grid">
+            <div class="partner-card">
+              <div class="partner-logo">
+                <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+                  <rect x="5" y="5" width="50" height="30" rx="5" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4 2"/>
+                  <text x="30" y="24" text-anchor="middle" fill="var(--text-muted)" font-size="8">ЛОГОТИП</text>
+                </svg>
+              </div>
+              <div class="partner-name">Инвестиционный фонд</div>
+              <div class="partner-type">Стратегический инвестор</div>
+            </div>
+            <div class="partner-card">
+              <div class="partner-logo">
+                <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+                  <rect x="5" y="5" width="50" height="30" rx="5" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4 2"/>
+                  <text x="30" y="24" text-anchor="middle" fill="var(--text-muted)" font-size="8">ЛОГОТИП</text>
+                </svg>
+              </div>
+              <div class="partner-name">Технологический партнёр</div>
+              <div class="partner-type">Поставщик оборудования</div>
+            </div>
+            <div class="partner-card">
+              <div class="partner-logo">
+                <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+                  <rect x="5" y="5" width="50" height="30" rx="5" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4 2"/>
+                  <text x="30" y="24" text-anchor="middle" fill="var(--text-muted)" font-size="8">ЛОГОТИП</text>
+                </svg>
+              </div>
+              <div class="partner-name">Государственная программа</div>
+              <div class="partner-type">Программа поддержки</div>
+            </div>
+            <div class="partner-card">
+              <div class="partner-logo">
+                <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+                  <rect x="5" y="5" width="50" height="30" rx="5" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4 2"/>
+                  <text x="30" y="24" text-anchor="middle" fill="var(--text-muted)" font-size="8">ЛОГОТИП</text>
+                </svg>
+              </div>
+              <div class="partner-name">Научный институт</div>
+              <div class="partner-type">Научно-исследовательский партнёр</div>
+            </div>
+          </div>
+          <div class="partners-note">
+            <p>Информация о партнёрах и инвесторах обновляется. Если вы заинтересованы в сотрудничестве — свяжитесь с нами.</p>
+            <button class="btn btn-primary" onclick="showPage('contacts')">Стать партнёром</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTS PAGE -->
+    <section id="page-contacts" class="page">
+      <div class="page-hero">
+        <div class="container">
+          <div class="section-tag">Связь</div>
+          <h1>Контакты</h1>
+          <p>Свяжитесь с нами для обсуждения сотрудничества</p>
+        </div>
+      </div>
+
+      <div class="contacts-section">
+        <div class="container">
+          <div class="contacts-grid">
+            <div class="contact-info">
+              <h2>Готовы обсудить сотрудничество</h2>
+              <p>Оставьте заявку, и наш специалист свяжется с вами в течение 2 часов в рабочее время</p>
+              <div class="contact-cards">
+                <div class="contact-card">
+                  <div class="contact-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Адрес</h4>
+                    <p>Россия (уточняется)</p>
+                  </div>
+                </div>
+                <div class="contact-card">
+                  <div class="contact-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Телефон</h4>
+                    <p><a href="tel:+7XXXXXXXXXX">+7 (XXX) XXX-XX-XX</a></p>
+                  </div>
+                </div>
+                <div class="contact-card">
+                  <div class="contact-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Email</h4>
+                    <p><a href="mailto:info@as-feed.ru">info@as-feed.ru</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form-wrap">
+              <form class="contact-form" id="contactForm">
+                <h3>Оставить заявку</h3>
+                <!-- Honeypot для защиты от спама -->
+                <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off">
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Имя <span class="required">*</span></label>
+                    <input type="text" name="name" class="form-input" placeholder="Иван Иванов" required>
+                    <span class="form-error"></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Телефон <span class="required">*</span></label>
+                    <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required>
+                    <span class="form-error"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email</label>
+                  <input type="email" name="email" class="form-input" placeholder="email@example.com">
+                  <span class="form-error"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Сообщение</label>
+                  <textarea name="message" class="form-textarea" placeholder="Опишите ваш запрос..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">
+                  <span class="submit-text">Отправить заявку</span>
+                  <span class="submit-loading" style="display: none;">
+                    <svg class="spinner" viewBox="0 0 24 24" width="20" height="20">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4" stroke-dashoffset="10"/>
+                    </svg>
+                    Отправка...
+                  </span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="logo" onclick="showPage('home')">
+            <div class="logo-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 4C10 4 5 8 4 14C3 20 6 26 12 28C14 29 16 29 18 28C22 27 25 24 27 20C29 16 28 11 25 8C22 5 19 4 16 4Z" fill="currentColor"/>
+                <circle cx="10" cy="14" r="2" fill="#1A1F36"/>
+              </svg>
+            </div>
+            <div class="logo-text-wrap">
+              <div class="logo-text">АС-ФИД</div>
+            </div>
+          </a>
+          <p>Российский производитель качественных экструдированных кормов для аквакультуры и сельскохозяйственных животных</p>
+        </div>
+        <div class="footer-col">
+          <h4>Каталог</h4>
+          <ul class="footer-links">
+            <li><a href="#catalog" onclick="showPage('catalog'); filterProducts('trout');">Форель</a></li>
+            <li><a href="#catalog" onclick="showPage('catalog'); filterProducts('sturgeon');">Осётр</a></li>
+            <li><a href="#catalog" onclick="showPage('catalog'); filterProducts('carp');">Карп</a></li>
+            <li><a href="#catalog" onclick="showPage('catalog'); filterProducts('catfish');">Сом</a></li>
+            <li><a href="#catalog" onclick="showPage('catalog'); filterProducts('tilapia');">Тилапия</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Компания</h4>
+          <ul class="footer-links">
+            <li><a href="#about" onclick="showPage('about')">О нас</a></li>
+            <li><a href="#partners" onclick="showPage('partners')">Партнёры</a></li>
+            <li><a href="#contacts" onclick="showPage('contacts')">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+7XXXXXXXXXX">+7 (XXX) XXX-XX-XX</a></li>
+            <li><a href="mailto:info@as-feed.ru">info@as-feed.ru</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 ООО «АС-ФИД». Все права защищены.</span>
+        <span>Корма для аквакультуры нового поколения</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Заявка на корм</h3>
+        <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="modalForm">
+          <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off">
+          <div class="form-group">
+            <label class="form-label">Корм</label>
+            <input type="text" name="product" class="form-input" id="selectedProduct" readonly>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Имя <span class="required">*</span></label>
+            <input type="text" name="name" class="form-input" placeholder="Иван Иванов" required>
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон <span class="required">*</span></label>
+            <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required>
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Объём закупки</label>
+            <select name="volume" class="form-select">
+              <option value="500kg-1t">500 кг — 1 тонна</option>
+              <option value="1t-3t">1 — 3 тонны</option>
+              <option value="3t-5t">3 — 5 тонн</option>
+              <option value="5t+">5+ тонн</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">
+            <span class="submit-text">Отправить заявку</span>
+            <span class="submit-loading" style="display: none;">Отправка...</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Notification -->
+  <div class="notification" id="notification">
+    <div class="notification-content">
+      <svg class="notification-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+      <span class="notification-text">Спасибо! Мы свяжемся с вами в ближайшее время.</span>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

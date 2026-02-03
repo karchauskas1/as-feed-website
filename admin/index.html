@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>АС-ФИД — Панель управления</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1A1F36;
+      --primary-light: #252B48;
+      --secondary: #22C55E;
+      --secondary-light: #4ADE80;
+      --bg-dark: #0F1225;
+      --bg-card: #1A1F36;
+      --text: #E2E8F0;
+      --text-muted: #94A3B8;
+      --border: #2D3555;
+      --error: #EF4444;
+      --warning: #F59E0B;
+      --info: #3B82F6;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Auth Screen */
+    .auth-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .auth-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .auth-card h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .auth-card p {
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: white;
+      font-size: 15px;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--secondary);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #22C55E, #14B8A6);
+      border: none;
+      border-radius: 10px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(34,197,94,0.3);
+    }
+
+    .error-msg {
+      color: var(--error);
+      font-size: 14px;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* Dashboard */
+    .dashboard {
+      display: none;
+    }
+
+    .dashboard.active {
+      display: block;
+    }
+
+    .header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header h1 span {
+      color: var(--secondary);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-logout {
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-logout:hover {
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .main {
+      padding: 40px;
+    }
+
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .stat-card h3 {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-card .value {
+      font-size: 36px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .stat-card.highlight {
+      border-color: var(--secondary);
+      background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(20,184,166,0.1));
+    }
+
+    .stat-card.highlight .value {
+      color: var(--secondary);
+    }
+
+    /* Filters */
+    .filters {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+
+    /* Table */
+    .table-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .table-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .table-header h2 {
+      font-size: 18px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: var(--bg-dark);
+    }
+
+    td {
+      font-size: 14px;
+    }
+
+    tr:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .status-new {
+      background: rgba(59,130,246,0.2);
+      color: var(--info);
+    }
+
+    .status-processing {
+      background: rgba(245,158,11,0.2);
+      color: var(--warning);
+    }
+
+    .status-completed {
+      background: rgba(34,197,94,0.2);
+      color: var(--secondary);
+    }
+
+    .status-rejected {
+      background: rgba(239,68,68,0.2);
+      color: var(--error);
+    }
+
+    .action-btn {
+      padding: 6px 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+
+    .action-btn:hover {
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+
+    .empty-state {
+      padding: 60px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .empty-state svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,18,37,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 18px;
+    }
+
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .lead-detail {
+      margin-bottom: 16px;
+    }
+
+    .lead-detail label {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .lead-detail p {
+      font-size: 15px;
+    }
+
+    .modal-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .btn-secondary {
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      background: var(--secondary);
+      border: none;
+      border-radius: 8px;
+      color: var(--primary);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Loader */
+    .loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--secondary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 16px 20px;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .main {
+        padding: 20px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+      }
+
+      .filter-btn {
+        flex-shrink: 0;
+      }
+
+      th, td {
+        padding: 12px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Auth Screen -->
+  <div class="auth-screen" id="authScreen">
+    <div class="auth-card">
+      <h1>АС-ФИД</h1>
+      <p>Панель управления заявками</p>
+      <form id="authForm">
+        <div class="form-group">
+          <label class="form-label">Токен доступа</label>
+          <input type="password" class="form-input" id="tokenInput" placeholder="Введите токен" required>
+        </div>
+        <button type="submit" class="btn">Войти</button>
+        <p class="error-msg" id="authError" style="display: none;"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashboard">
+    <header class="header">
+      <h1>
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4C10 4 5 8 4 14C3 20 6 26 12 28C14 29 16 29 18 28C22 27 25 24 27 20C29 16 28 11 25 8C22 5 19 4 16 4Z" fill="#22C55E"/>
+        </svg>
+        <span>АС-ФИД</span> Панель управления
+      </h1>
+      <div class="header-actions">
+        <button class="btn-logout" onclick="logout()">Выйти</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Stats -->
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card highlight">
+          <h3>Всего заявок</h3>
+          <div class="value" id="statTotal">-</div>
+        </div>
+        <div class="stat-card">
+          <h3>Сегодня</h3>
+          <div class="value" id="statToday">-</div>
+        </div>
+        <div class="stat-card">
+          <h3>За неделю</h3>
+          <div class="value" id="statWeek">-</div>
+        </div>
+        <div class="stat-card">
+          <h3>Новые</h3>
+          <div class="value" id="statNew">-</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="new">Новые</button>
+        <button class="filter-btn" data-filter="processing">В работе</button>
+        <button class="filter-btn" data-filter="completed">Завершённые</button>
+        <button class="filter-btn" data-filter="rejected">Отклонённые</button>
+      </div>
+
+      <!-- Table -->
+      <div class="table-card">
+        <div class="table-header">
+          <h2>Заявки</h2>
+          <button class="action-btn" onclick="loadData()">Обновить</button>
+        </div>
+        <div class="table-wrapper">
+          <div class="loader" id="loader">
+            <div class="spinner"></div>
+          </div>
+          <table id="leadsTable" style="display: none;">
+            <thead>
+              <tr>
+                <th>Дата</th>
+                <th>Имя</th>
+                <th>Телефон</th>
+                <th>Тип</th>
+                <th>Продукт</th>
+                <th>Статус</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="leadsBody"></tbody>
+          </table>
+          <div class="empty-state" id="emptyState" style="display: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+            <p>Заявок пока нет</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Lead Detail Modal -->
+  <div class="modal-overlay" id="leadModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Детали заявки</h3>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="leadDetails"></div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeModal()">Закрыть</button>
+        <select id="statusSelect" class="form-input" style="width: auto;">
+          <option value="new">Новая</option>
+          <option value="processing">В работе</option>
+          <option value="completed">Завершена</option>
+          <option value="rejected">Отклонена</option>
+        </select>
+        <button class="btn-primary" onclick="updateLeadStatus()">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ==========================================================================
+    // State
+    // ==========================================================================
+    let authToken = localStorage.getItem('adminToken') || '';
+    let leads = [];
+    let currentFilter = 'all';
+    let currentLeadId = null;
+
+    // API Base URL
+    const API_URL = window.location.origin;
+
+    // ==========================================================================
+    // Auth
+    // ==========================================================================
+    document.getElementById('authForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const token = document.getElementById('tokenInput').value;
+
+      try {
+        const response = await fetch(`${API_URL}/api/stats`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (response.ok) {
+          authToken = token;
+          localStorage.setItem('adminToken', token);
+          showDashboard();
+        } else {
+          showAuthError('Неверный токен');
+        }
+      } catch (error) {
+        showAuthError('Ошибка подключения к серверу');
+      }
+    });
+
+    function showAuthError(message) {
+      const errorEl = document.getElementById('authError');
+      errorEl.textContent = message;
+      errorEl.style.display = 'block';
+    }
+
+    function logout() {
+      authToken = '';
+      localStorage.removeItem('adminToken');
+      document.getElementById('authScreen').style.display = 'flex';
+      document.getElementById('dashboard').classList.remove('active');
+    }
+
+    function showDashboard() {
+      document.getElementById('authScreen').style.display = 'none';
+      document.getElementById('dashboard').classList.add('active');
+      loadData();
+    }
+
+    // ==========================================================================
+    // Data Loading
+    // ==========================================================================
+    async function loadData() {
+      await Promise.all([loadStats(), loadLeads()]);
+    }
+
+    async function loadStats() {
+      try {
+        const response = await fetch(`${API_URL}/api/stats`, {
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          document.getElementById('statTotal').textContent = data.stats.total;
+          document.getElementById('statToday').textContent = data.stats.today;
+          document.getElementById('statWeek').textContent = data.stats.thisWeek;
+          document.getElementById('statNew').textContent = data.stats.byStatus.new;
+        }
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    }
+
+    async function loadLeads() {
+      const loader = document.getElementById('loader');
+      const table = document.getElementById('leadsTable');
+      const emptyState = document.getElementById('emptyState');
+
+      loader.style.display = 'flex';
+      table.style.display = 'none';
+      emptyState.style.display = 'none';
+
+      try {
+        const response = await fetch(`${API_URL}/api/leads`, {
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          leads = data.leads;
+          renderLeads();
+        }
+      } catch (error) {
+        console.error('Error loading leads:', error);
+      } finally {
+        loader.style.display = 'none';
+      }
+    }
+
+    function renderLeads() {
+      const tbody = document.getElementById('leadsBody');
+      const table = document.getElementById('leadsTable');
+      const emptyState = document.getElementById('emptyState');
+
+      const filteredLeads = currentFilter === 'all'
+        ? leads
+        : leads.filter(l => l.status === currentFilter);
+
+      if (filteredLeads.length === 0) {
+        table.style.display = 'none';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      table.style.display = 'table';
+      emptyState.style.display = 'none';
+
+      tbody.innerHTML = filteredLeads.map(lead => `
+        <tr>
+          <td>${formatDate(lead.createdAt)}</td>
+          <td>${escapeHtml(lead.name)}</td>
+          <td>${escapeHtml(lead.phone)}</td>
+          <td>${lead.formType === 'product' ? 'Продукт' : 'Контакт'}</td>
+          <td>${lead.product ? escapeHtml(lead.product) : '-'}</td>
+          <td><span class="status-badge status-${lead.status}">${getStatusText(lead.status)}</span></td>
+          <td><button class="action-btn" onclick="viewLead('${lead.id}')">Детали</button></td>
+        </tr>
+      `).join('');
+    }
+
+    // ==========================================================================
+    // Modal
+    // ==========================================================================
+    function viewLead(id) {
+      const lead = leads.find(l => l.id === id);
+      if (!lead) return;
+
+      currentLeadId = id;
+
+      document.getElementById('leadDetails').innerHTML = `
+        <div class="lead-detail">
+          <label>Имя</label>
+          <p>${escapeHtml(lead.name)}</p>
+        </div>
+        <div class="lead-detail">
+          <label>Телефон</label>
+          <p>${escapeHtml(lead.phone)}</p>
+        </div>
+        ${lead.email ? `
+        <div class="lead-detail">
+          <label>Email</label>
+          <p>${escapeHtml(lead.email)}</p>
+        </div>
+        ` : ''}
+        ${lead.product ? `
+        <div class="lead-detail">
+          <label>Продукт</label>
+          <p>${escapeHtml(lead.product)}</p>
+        </div>
+        ` : ''}
+        ${lead.volume ? `
+        <div class="lead-detail">
+          <label>Объём</label>
+          <p>${escapeHtml(lead.volume)}</p>
+        </div>
+        ` : ''}
+        ${lead.message ? `
+        <div class="lead-detail">
+          <label>Сообщение</label>
+          <p>${escapeHtml(lead.message)}</p>
+        </div>
+        ` : ''}
+        <div class="lead-detail">
+          <label>Дата создания</label>
+          <p>${formatDate(lead.createdAt, true)}</p>
+        </div>
+      `;
+
+      document.getElementById('statusSelect').value = lead.status;
+      document.getElementById('leadModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('leadModal').classList.remove('active');
+      currentLeadId = null;
+    }
+
+    async function updateLeadStatus() {
+      if (!currentLeadId) return;
+
+      const newStatus = document.getElementById('statusSelect').value;
+
+      try {
+        const response = await fetch(`${API_URL}/api/leads/${currentLeadId}`, {
+          method: 'PATCH',
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ status: newStatus })
+        });
+
+        if (response.ok) {
+          const leadIndex = leads.findIndex(l => l.id === currentLeadId);
+          if (leadIndex !== -1) {
+            leads[leadIndex].status = newStatus;
+          }
+          renderLeads();
+          loadStats();
+          closeModal();
+        }
+      } catch (error) {
+        console.error('Error updating lead:', error);
+      }
+    }
+
+    // ==========================================================================
+    // Filters
+    // ==========================================================================
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.dataset.filter;
+        renderLeads();
+      });
+    });
+
+    // ==========================================================================
+    // Helpers
+    // ==========================================================================
+    function formatDate(dateStr, full = false) {
+      const date = new Date(dateStr);
+      if (full) {
+        return date.toLocaleString('ru-RU');
+      }
+      return date.toLocaleDateString('ru-RU');
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function getStatusText(status) {
+      const texts = {
+        new: 'Новая',
+        processing: 'В работе',
+        completed: 'Завершена',
+        rejected: 'Отклонена'
+      };
+      return texts[status] || status;
+    }
+
+    // ==========================================================================
+    // Init
+    // ==========================================================================
+    if (authToken) {
+      // Verify token on load
+      fetch(`${API_URL}/api/stats`, {
+        headers: { 'Authorization': `Bearer ${authToken}` }
+      }).then(response => {
+        if (response.ok) {
+          showDashboard();
+        } else {
+          logout();
+        }
+      }).catch(() => logout());
+    }
+
+    // Close modal on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Close modal on overlay click
+    document.getElementById('leadModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaFeed — Корма для аквакультуры</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1A1F36;
+      --primary-light: #252B48;
+      --primary-dark: #12152A;
+      --secondary: #22C55E;
+      --secondary-light: #4ADE80;
+      --secondary-dark: #16A34A;
+      --accent: #FBBF24;
+      --accent-hover: #FCD34D;
+      --teal: #14B8A6;
+      --text: #E2E8F0;
+      --text-muted: #94A3B8;
+      --bg-dark: #0F1225;
+      --bg-card: #1A1F36;
+      --bg-card-hover: #252B48;
+      --border: #2D3555;
+      --white: #FFFFFF;
+      --gradient-green: linear-gradient(135deg, #22C55E 0%, #14B8A6 100%);
+      --gradient-dark: linear-gradient(180deg, #1A1F36 0%, #0F1225 100%);
+      --shadow: 0 20px 40px rgba(0,0,0,0.4);
+      --glow-green: 0 0 50px rgba(34,197,94,0.25);
+      --radius: 20px;
+      --radius-lg: 32px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(15,18,37,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 90px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-icon {
+      width: 54px;
+      height: 54px;
+      background: var(--gradient-green);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      text-align: center;
+    }
+
+    .logo-text-wrap { display: flex; flex-direction: column; }
+
+    .logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .nav { display: flex; align-items: center; gap: 8px; }
+
+    .nav-link {
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 12px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--white);
+      background: var(--bg-card);
+    }
+
+    .nav-cta {
+      background: var(--gradient-green);
+      color: var(--primary-dark);
+      padding: 14px 32px;
+      font-weight: 700;
+      border-radius: 12px;
+      margin-left: 16px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glow-green);
+    }
+
+    /* Pages */
+    .page { display: none; min-height: 100vh; padding-top: 90px; }
+    .page.active { display: block; }
+
+    /* HOME PAGE */
+    .hero {
+      min-height: calc(100vh - 90px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .hero-deco {
+      position: absolute;
+      top: 100px;
+      right: 0;
+      width: 50%;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(34,197,94,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.2);
+      padding: 12px 24px;
+      border-radius: 60px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--secondary);
+      margin-bottom: 32px;
+    }
+
+    .hero-label-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--secondary);
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.5; }
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      line-height: 1.05;
+      margin-bottom: 28px;
+      color: var(--white);
+      letter-spacing: -2px;
+      font-weight: 800;
+    }
+
+    .hero h1 .green { color: var(--secondary); }
+    .hero h1 .teal { color: var(--teal); }
+
+    .hero-desc {
+      font-size: 20px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      line-height: 1.8;
+      max-width: 520px;
+    }
+
+    .hero-actions { display: flex; gap: 20px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 40px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--gradient-green);
+      color: var(--primary-dark);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--glow-green);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 560px;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-dark);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 160px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-green);
+    }
+
+    .hero-float-card {
+      position: absolute;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-float-1 {
+      top: 40px;
+      left: -60px;
+    }
+
+    .hero-float-2 {
+      bottom: 60px;
+      right: -40px;
+      background: var(--gradient-green);
+      border: none;
+      color: var(--primary-dark);
+    }
+
+    .hero-float-value {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .hero-float-label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .hero-float-2 .hero-float-label { color: var(--primary); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 100px;
+      padding-top: 60px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .stat-card:hover {
+      border-color: var(--secondary);
+      transform: translateY(-4px);
+    }
+
+    .stat-value {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--secondary);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Features */
+    .features-section {
+      padding: 120px 0;
+      background: var(--bg-card);
+      position: relative;
+    }
+
+    .features-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--secondary);
+      margin-bottom: 20px;
+      padding: 10px 24px;
+      background: rgba(34,197,94,0.1);
+      border-radius: 50px;
+    }
+
+    .section-title {
+      font-size: 3.5rem;
+      color: var(--white);
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+      font-weight: 800;
+    }
+
+    .section-desc {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .feature-card {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      transition: all 0.4s;
+      position: relative;
+    }
+
+    .feature-card:hover {
+      border-color: var(--secondary);
+      transform: translateY(-10px);
+      box-shadow: var(--glow-green);
+    }
+
+    .feature-number {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 80px;
+      font-weight: 800;
+      color: var(--border);
+      opacity: 0.3;
+      line-height: 1;
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-green);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin-bottom: 32px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .feature-card p {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 80px 0 100px;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(34,197,94,0.08) 0%, transparent 60%);
+    }
+
+    .page-hero h1 {
+      font-size: 4rem;
+      color: var(--white);
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+      font-weight: 800;
+    }
+
+    .page-hero p {
+      font-size: 20px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* About */
+    .about-section { padding: 80px 0 120px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .about-visual { position: relative; }
+
+    .about-image {
+      height: 600px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 140px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(to top, rgba(34,197,94,0.2) 0%, transparent 100%);
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gradient-green);
+      color: var(--primary-dark);
+      padding: 24px 48px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--glow-green);
+    }
+
+    .about-badge-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+
+    .about-badge-label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .about-content h2 {
+      font-size: 3rem;
+      color: var(--white);
+      margin-bottom: 28px;
+      letter-spacing: -1px;
+      font-weight: 800;
+    }
+
+    .about-content p {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.9;
+    }
+
+    .about-list {
+      list-style: none;
+      margin-top: 40px;
+    }
+
+    .about-list li {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 17px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .about-list li::before {
+      content: '✓';
+      width: 36px;
+      height: 36px;
+      background: var(--gradient-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--primary-dark);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Catalog */
+    .catalog-filters {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding: 48px 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 16px 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 60px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--gradient-green);
+      border-color: transparent;
+      color: var(--primary-dark);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+      padding-bottom: 120px;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all 0.4s;
+    }
+
+    .product-card:hover {
+      border-color: var(--secondary);
+      transform: translateY(-10px);
+      box-shadow: var(--glow-green);
+    }
+
+    .product-image {
+      height: 220px;
+      background: var(--gradient-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+      position: relative;
+    }
+
+    .product-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(to top, var(--bg-card) 0%, transparent 100%);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 50px;
+      z-index: 2;
+    }
+
+    .product-content { padding: 32px; }
+
+    .product-category {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--secondary);
+      margin-bottom: 12px;
+    }
+
+    .product-title {
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .product-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    .product-specs {
+      display: flex;
+      gap: 20px;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .product-spec {
+      flex: 1;
+      text-align: center;
+    }
+
+    .product-spec-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+
+    .product-spec-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .product-btn {
+      width: 100%;
+      padding: 18px;
+      background: var(--gradient-green);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 15px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .product-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glow-green);
+    }
+
+    /* Partners */
+    .partners-section { padding: 80px 0 120px; }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 36px;
+    }
+
+    .partner-card {
+      background: var(--bg-card);
+      border: 2px dashed var(--border);
+      border-radius: var(--radius-lg);
+      padding: 56px 32px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .partner-card:hover {
+      border-style: solid;
+      border-color: var(--secondary);
+    }
+
+    .partner-logo {
+      width: 120px;
+      height: 72px;
+      background: var(--bg-dark);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .partner-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .partner-type {
+      font-size: 13px;
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    /* Contacts */
+    .contacts-section { padding: 80px 0 120px; }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 80px;
+    }
+
+    .contact-info h2 {
+      font-size: 3rem;
+      color: var(--white);
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+      font-weight: 800;
+    }
+
+    .contact-info > p {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+
+    .contact-cards { display: flex; flex-direction: column; gap: 20px; }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 0.3s;
+    }
+
+    .contact-card:hover { border-color: var(--secondary); }
+
+    .contact-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--gradient-green);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .contact-card h4 {
+      font-size: 14px;
+      color: var(--secondary);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .contact-card p {
+      font-size: 18px;
+      color: var(--white);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .contact-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 56px;
+      position: relative;
+    }
+
+    .contact-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 40px;
+      right: 40px;
+      height: 4px;
+      background: var(--gradient-green);
+      border-radius: 0 0 4px 4px;
+    }
+
+    .contact-form h3 {
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .form-group { margin-bottom: 28px; }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 18px 22px;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font-size: 16px;
+      color: var(--white);
+      font-family: inherit;
+      transition: all 0.3s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.1);
+    }
+
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+
+    .form-textarea { resize: vertical; min-height: 140px; }
+
+    .form-submit {
+      width: 100%;
+      padding: 20px;
+      background: var(--gradient-green);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 17px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glow-green);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--primary-dark);
+      padding: 100px 0 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 64px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-brand p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-top: 24px;
+      line-height: 1.8;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--secondary);
+      margin-bottom: 28px;
+    }
+
+    .footer-links { list-style: none; }
+
+    .footer-links li { margin-bottom: 16px; }
+
+    .footer-links a {
+      font-size: 15px;
+      color: var(--text-muted);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 40px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,18,37,0.95);
+      backdrop-filter: blur(16px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+    }
+
+    .modal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 40px;
+      right: 40px;
+      height: 4px;
+      background: var(--gradient-green);
+      border-radius: 0 0 4px 4px;
+    }
+
+    .modal-header {
+      padding: 36px 36px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 1.75rem;
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .modal-close {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--text);
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .modal-close:hover { border-color: var(--secondary); color: var(--white); }
+
+    .modal-body { padding: 36px; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 60px; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .partners-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .nav { display: none; }
+      .hero h1 { font-size: 2.75rem; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .partners-grid { grid-template-columns: 1fr; }
+      .contacts-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .about-badge { position: relative; left: auto; transform: none; margin-top: 24px; display: inline-block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+          <div class="logo-icon">ВАШ<br>ЛОГО</div>
+          <div class="logo-text-wrap">
+            <div class="logo-text">[НАЗВАНИЕ]</div>
+            <div class="logo-sub">Аквакультура</div>
+          </div>
+        </div>
+        <nav class="nav">
+          <span class="nav-link active" onclick="showPage('home')">Главная</span>
+          <span class="nav-link" onclick="showPage('about')">О компании</span>
+          <span class="nav-link" onclick="showPage('catalog')">Каталог</span>
+          <span class="nav-link" onclick="showPage('partners')">Партнёры</span>
+          <span class="nav-link" onclick="showPage('contacts')">Контакты</span>
+          <span class="nav-cta" onclick="showPage('contacts')">Оставить заявку</span>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- HOME PAGE -->
+  <div id="page-home" class="page active">
+    <section class="hero">
+      <div class="hero-deco"></div>
+      <div class="container" style="display: contents;">
+        <div class="hero-content">
+          <div class="hero-label">
+            <div class="hero-label-dot"></div>
+            Российское производство
+          </div>
+          <h1>Корма для <span class="green">аквакультуры</span> нового поколения</h1>
+          <p class="hero-desc">Экструдированные корма для форели, осетра, карпа и других видов рыб. Современное оборудование, российское сырьё, доставка по всей России.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="showPage('catalog')">Каталог кормов →</button>
+            <button class="btn btn-outline" onclick="showPage('contacts')">Связаться</button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-img">🐟</div>
+          <div class="hero-float-card hero-float-1">
+            <div class="hero-float-value">10+</div>
+            <div class="hero-float-label">Видов кормов</div>
+          </div>
+          <div class="hero-float-card hero-float-2">
+            <div class="hero-float-value">100%</div>
+            <div class="hero-float-label">Российское сырьё</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-value">4</div>
+          <div class="stat-label">Вида рыб в ассортименте</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">1000+</div>
+          <div class="stat-label">Тонн в месяц мощность</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">РФ</div>
+          <div class="stat-label">Доставка по всей России</div>
+        </div>
+      </div>
+    </div>
+
+    <section class="features-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Преимущества</div>
+          <h2 class="section-title">Почему выбирают нас</h2>
+          <p class="section-desc">Современное производство с контролем качества на каждом этапе</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">🔬</div>
+            <h3>Контроль качества</h3>
+            <p>Лабораторный анализ сырья и готовой продукции на всех этапах производства</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">⚙️</div>
+            <h3>Современное оборудование</h3>
+            <p>Экструзионные линии нового поколения для производства гранулированных кормов</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">🚚</div>
+            <h3>Доставка по России</h3>
+            <p>Собственная логистика и работа с транспортными компаниями во все регионы</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ABOUT PAGE -->
+  <div id="page-about" class="page">
+    <section class="page-hero">
+      <div class="container">
+        <h1>О компании</h1>
+        <p>Современный комбикормовый завод с поддержкой инвестиционных фондов</p>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-visual">
+            <div class="about-image">🏭</div>
+            <div class="about-badge">
+              <div class="about-badge-value">2025</div>
+              <div class="about-badge-label">Год основания</div>
+            </div>
+          </div>
+          <div class="about-content">
+            <h2>Производство кормов для аквакультуры</h2>
+            <p>Мы — молодая и амбициозная компания, запускающая современный комбикормовый завод по производству экструдированных кормов для аквакультуры.</p>
+            <p>Благодаря поддержке инвестиционных фондов и государственных программ, мы используем передовые технологии и качественное российское сырьё.</p>
+            <ul class="about-list">
+              <li>Современное экструзионное оборудование</li>
+              <li>Контроль качества на всех этапах</li>
+              <li>Российское сырьё от проверенных поставщиков</li>
+              <li>Разработка рецептур под потребности клиента</li>
+              <li>Доставка во все регионы России</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CATALOG PAGE -->
+  <div id="page-catalog" class="page">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Каталог кормов</h1>
+        <p>Полнорационные экструдированные корма для различных видов рыб</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="catalog-filters">
+          <button class="filter-btn active">Все корма</button>
+          <button class="filter-btn">Форель</button>
+          <button class="filter-btn">Осётр</button>
+          <button class="filter-btn">Карп</button>
+          <button class="filter-btn">Сом</button>
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">🐟<span class="product-badge">Хит</span></div>
+            <div class="product-content">
+              <div class="product-category">Форель</div>
+              <h3 class="product-title">Форель Гроу 42/20</h3>
+              <p class="product-desc">Продукционный корм для товарной форели</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">42%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">20%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">4-10мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Форель Гроу 42/20')">Оставить заявку</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">🐟</div>
+            <div class="product-content">
+              <div class="product-category">Форель</div>
+              <h3 class="product-title">Форель Старт 60/12</h3>
+              <p class="product-desc">Стартовый корм для молоди форели</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">60%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">12%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">1-3мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Форель Старт 60/12')">Оставить заявку</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">🐠<span class="product-badge">Новинка</span></div>
+            <div class="product-content">
+              <div class="product-category">Осётр</div>
+              <h3 class="product-title">Осётр Премиум 48/17</h3>
+              <p class="product-desc">Сбалансированный корм для осетровых</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">48%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">17%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">4-10мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Осётр Премиум 48/17')">Оставить заявку</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">🐡</div>
+            <div class="product-content">
+              <div class="product-category">Карп</div>
+              <h3 class="product-title">Карп Универсал 32/8</h3>
+              <p class="product-desc">Продукционный корм для карповых</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">32%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">8%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">4-8мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Карп Универсал 32/8')">Оставить заявку</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">🐱</div>
+            <div class="product-content">
+              <div class="product-category">Сом</div>
+              <h3 class="product-title">Сом Гроу 40/10</h3>
+              <p class="product-desc">Специализированный корм для сомовых</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">40%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">10%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">4-8мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Сом Гроу 40/10')">Оставить заявку</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">🐠</div>
+            <div class="product-content">
+              <div class="product-category">Осётр</div>
+              <h3 class="product-title">Осётр Старт 52/18</h3>
+              <p class="product-desc">Корм для молоди осетровых</p>
+              <div class="product-specs">
+                <div class="product-spec">
+                  <div class="product-spec-value">52%</div>
+                  <div class="product-spec-label">Протеин</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">18%</div>
+                  <div class="product-spec-label">Жир</div>
+                </div>
+                <div class="product-spec">
+                  <div class="product-spec-value">1-2.5мм</div>
+                  <div class="product-spec-label">Гранула</div>
+                </div>
+              </div>
+              <button class="product-btn" onclick="openModal('Осётр Старт 52/18')">Оставить заявку</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PARTNERS PAGE -->
+  <div id="page-partners" class="page">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Партнёры и инвесторы</h1>
+        <p>Нас поддерживают ведущие фонды и программы развития</p>
+      </div>
+    </section>
+
+    <section class="partners-section">
+      <div class="container">
+        <div class="partners-grid">
+          <div class="partner-card">
+            <div class="partner-logo">ЛОГОТИП<br>ФОНДА</div>
+            <div class="partner-name">[Название фонда]</div>
+            <div class="partner-type">Инвестиционный фонд</div>
+          </div>
+          <div class="partner-card">
+            <div class="partner-logo">ЛОГОТИП<br>КОМПАНИИ</div>
+            <div class="partner-name">[Название компании]</div>
+            <div class="partner-type">Стратегический партнёр</div>
+          </div>
+          <div class="partner-card">
+            <div class="partner-logo">ЛОГОТИП<br>ПРОГРАММЫ</div>
+            <div class="partner-name">[Гос. программа]</div>
+            <div class="partner-type">Программа поддержки</div>
+          </div>
+          <div class="partner-card">
+            <div class="partner-logo">ЛОГОТИП<br>ПАРТНЁРА</div>
+            <div class="partner-name">[Название партнёра]</div>
+            <div class="partner-type">Технологический партнёр</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CONTACTS PAGE -->
+  <div id="page-contacts" class="page">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Контакты</h1>
+        <p>Свяжитесь с нами для обсуждения сотрудничества</p>
+      </div>
+    </section>
+
+    <section class="contacts-section">
+      <div class="container">
+        <div class="contacts-grid">
+          <div class="contact-info">
+            <h2>Готовы обсудить сотрудничество</h2>
+            <p>Оставьте заявку, и наш специалист свяжется с вами в течение 2 часов в рабочее время</p>
+            <div class="contact-cards">
+              <div class="contact-card">
+                <div class="contact-icon">📍</div>
+                <div>
+                  <h4>Адрес</h4>
+                  <p>[Ваш адрес], Россия</p>
+                </div>
+              </div>
+              <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <div>
+                  <h4>Телефон</h4>
+                  <p>+7 (XXX) XXX-XX-XX</p>
+                </div>
+              </div>
+              <div class="contact-card">
+                <div class="contact-icon">✉️</div>
+                <div>
+                  <h4>Email</h4>
+                  <p>info@yourcompany.ru</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h3>Оставить заявку</h3>
+            <form onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами.');">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Имя *</label>
+                  <input type="text" class="form-input" placeholder="Иван Иванов" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Телефон *</label>
+                  <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" placeholder="email@example.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Сообщение</label>
+                <textarea class="form-textarea" placeholder="Опишите ваш запрос..."></textarea>
+              </div>
+              <button type="submit" class="form-submit">Отправить заявку</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">ВАШ<br>ЛОГО</div>
+            <div class="logo-text-wrap">
+              <div class="logo-text">[НАЗВАНИЕ]</div>
+            </div>
+          </div>
+          <p>Российский производитель качественных экструдированных кормов для аквакультуры</p>
+        </div>
+        <div class="footer-col">
+          <h4>Каталог</h4>
+          <ul class="footer-links">
+            <li><a onclick="showPage('catalog')">Форель</a></li>
+            <li><a onclick="showPage('catalog')">Осётр</a></li>
+            <li><a onclick="showPage('catalog')">Карп</a></li>
+            <li><a onclick="showPage('catalog')">Сом</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Компания</h4>
+          <ul class="footer-links">
+            <li><a onclick="showPage('about')">О нас</a></li>
+            <li><a onclick="showPage('partners')">Партнёры</a></li>
+            <li><a onclick="showPage('contacts')">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <ul class="footer-links">
+            <li>+7 (XXX) XXX-XX-XX</li>
+            <li>info@yourcompany.ru</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 [Название компании]</span>
+        <span>Вариант 3: Экологичный</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Заявка на корм</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="event.preventDefault(); alert('Спасибо!'); closeModal();">
+          <div class="form-group">
+            <label class="form-label">Корм</label>
+            <input type="text" class="form-input" id="selectedProduct" readonly>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Имя *</label>
+            <input type="text" class="form-input" placeholder="Иван Иванов" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон *</label>
+            <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Объём</label>
+            <select class="form-select">
+              <option>500 кг - 1 т</option>
+              <option>1-3 т</option>
+              <option>3-5 т</option>
+              <option>5+ т</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Отправить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      document.getElementById('page-' + pageId).classList.add('active');
+      document.querySelector(`.nav-link[onclick="showPage('${pageId}')"]`)?.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openModal(productName) {
+      document.getElementById('selectedProduct').value = productName;
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

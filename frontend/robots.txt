@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://as-feed.ru/sitemap.xml
+
+# Disallow admin panel
+Disallow: /admin
+Disallow: /api/
