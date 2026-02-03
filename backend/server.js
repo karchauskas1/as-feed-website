@@ -344,7 +344,9 @@ app.get('/api/stats', (req, res) => {
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    hasAdminToken: !!process.env.ADMIN_TOKEN,
+    tokenLength: process.env.ADMIN_TOKEN ? process.env.ADMIN_TOKEN.length : 0
   });
 });
 
