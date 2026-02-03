@@ -28,24 +28,34 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 // Data Storage
 // ==========================================================================
 
+const IS_VERCEL = process.env.VERCEL === '1';
 const DATA_DIR = path.join(__dirname, 'data');
 const LEADS_FILE = path.join(DATA_DIR, 'leads.json');
 
-// Ensure data directory exists
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
+// In-memory storage for Vercel (serverless has no persistent filesystem)
+let memoryLeads = [];
 
-// Initialize leads file if not exists
-if (!fs.existsSync(LEADS_FILE)) {
-  fs.writeFileSync(LEADS_FILE, JSON.stringify([], null, 2));
+// For local development: use file storage
+if (!IS_VERCEL) {
+  // Ensure data directory exists
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+
+  // Initialize leads file if not exists
+  if (!fs.existsSync(LEADS_FILE)) {
+    fs.writeFileSync(LEADS_FILE, JSON.stringify([], null, 2));
+  }
 }
 
 /**
- * Read leads from file
+ * Read leads from storage
  * @returns {Array} - Array of leads
  */
 function readLeads() {
+  if (IS_VERCEL) {
+    return memoryLeads;
+  }
   try {
     const data = fs.readFileSync(LEADS_FILE, 'utf8');
     return JSON.parse(data);
@@ -56,10 +66,14 @@ function readLeads() {
 }
 
 /**
- * Write leads to file
+ * Write leads to storage
  * @param {Array} leads - Array of leads
  */
 function writeLeads(leads) {
+  if (IS_VERCEL) {
+    memoryLeads = leads;
+    return;
+  }
   try {
     fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2));
   } catch (error) {
