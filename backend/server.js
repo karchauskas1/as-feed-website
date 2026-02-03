@@ -352,12 +352,21 @@ app.get('*', (req, res) => {
 // Start Server
 // ==========================================================================
 
-app.listen(PORT, () => {
-  console.log(`
+// For Vercel serverless deployment
+if (process.env.VERCEL) {
+  module.exports = app;
+} else {
+  // Local development
+  app.listen(PORT, () => {
+    console.log(`
 ╔═══════════════════════════════════════════════════╗
 ║       АС-ФИД Backend Server                       ║
 ║       Running on port ${PORT}                          ║
 ║       http://localhost:${PORT}                         ║
 ╚═══════════════════════════════════════════════════╝
-  `);
-});
+    `);
+  });
+}
+
+// Export for Vercel
+module.exports = app;
