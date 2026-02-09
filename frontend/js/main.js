@@ -196,7 +196,7 @@
 
   /**
    * Filter products by category
-   * @param {string} category - Category to filter (all, trout, sturgeon, carp, catfish, tilapia)
+   * @param {string} category - Category to filter (all, aqua, poultry, cattle, pigs)
    */
   window.filterProducts = function(category) {
     const products = document.querySelectorAll('.product-card');
