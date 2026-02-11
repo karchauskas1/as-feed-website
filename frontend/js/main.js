@@ -38,6 +38,13 @@
       targetPage.classList.add('active');
     }
 
+    // Fix catalog product visibility (reset opacity from Intersection Observer)
+    if (pageId === 'catalog') {
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.style.opacity = '1';
+      });
+    }
+
     // Update navigation links
     document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
       link.classList.remove('active');
@@ -214,6 +221,7 @@
     products.forEach(product => {
       if (category === 'all' || product.dataset.category === category) {
         product.classList.remove('hidden');
+        product.style.opacity = '1';  // Ensure visibility (fixes Intersection Observer issue)
         product.style.animation = 'fadeIn 0.3s ease';
       } else {
         product.classList.add('hidden');
@@ -513,8 +521,8 @@
     });
   }, observerOptions);
 
-  // Observe elements for animation
-  document.querySelectorAll('.feature-card, .product-card, .partner-card, .stat-card').forEach(el => {
+  // Observe elements for animation (excluding product-card to prevent catalog visibility issues)
+  document.querySelectorAll('.feature-card, .partner-card, .stat-card').forEach(el => {
     el.style.opacity = '0';
     observer.observe(el);
   });
