@@ -942,6 +942,9 @@ ul, ol {
   padding: 56px 32px;
   text-align: center;
   transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .partner-card:hover {
@@ -968,6 +971,10 @@ ul, ol {
   font-size: 13px;
   color: var(--secondary);
   font-weight: 500;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .partners-note {
