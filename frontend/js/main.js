@@ -221,13 +221,6 @@
     });
   };
 
-  // Filter button click handlers
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      filterProducts(this.dataset.filter);
-    });
-  });
-
   // ==========================================================================
   // Form Validation & Submission
   // ==========================================================================
@@ -533,6 +526,13 @@
   function init() {
     // Handle initial hash
     handleInitialHash();
+
+    // Initialize filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        filterProducts(this.dataset.filter);
+      });
+    });
 
     // Set current year in footer
     const yearSpan = document.querySelector('.footer-bottom span:first-child');
