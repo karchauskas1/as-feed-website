@@ -1791,9 +1791,27 @@ ul, ol {
 }
 
 .featured-icon {
-  width: 60px;
-  height: 60px;
+  width: 100%;
+  height: 180px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0efe9;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.featured-icon img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  padding: 8px;
+  transition: transform 0.4s ease;
+}
+
+.featured-card:hover .featured-icon img {
+  transform: scale(1.05);
 }
 
 .featured-card h3 {
