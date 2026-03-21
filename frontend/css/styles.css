@@ -132,12 +132,15 @@ ul, ol {
 .logo-icon {
   width: 48px;
   height: 48px;
-  background: var(--secondary-light);
-  border-radius: var(--radius);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--white);
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   transition: transform var(--transition);
 }
 
@@ -301,6 +304,25 @@ ul, ol {
   padding: 80px 0 100px;
   text-align: center;
   position: relative;
+  background-image: url('../images/pattern-bg.png');
+  background-size: 400px;
+  background-repeat: repeat;
+  background-position: center;
+  opacity: 1;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(26,31,54,0.92) 50%, var(--bg-dark) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-hero .container {
+  position: relative;
+  z-index: 1;
 }
 
 .page-hero h1 {
@@ -850,12 +872,25 @@ ul, ol {
 }
 
 .product-image {
-  height: 180px;
-  background: var(--bg-card-hover);
+  height: 280px;
+  background: #f0efe9;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: hidden;
+}
+
+.product-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  padding: 12px;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
 }
 
 .product-fish {
