@@ -130,11 +130,15 @@ ul, ol {
 }
 
 .logo-icon {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(5,150,105,0.08);
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 6px;
 }
 
 .logo-img {
@@ -305,17 +309,21 @@ ul, ol {
   text-align: center;
   position: relative;
   background-image: url('../images/pattern-bg.png');
-  background-size: 400px;
+  background-size: 500px;
   background-repeat: repeat;
   background-position: center;
-  opacity: 1;
 }
 
 .page-hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(26,31,54,0.92) 50%, var(--bg-dark) 100%);
+  background: linear-gradient(180deg,
+    var(--bg-dark) 0%,
+    rgba(26,31,54,0.85) 15%,
+    rgba(26,31,54,0.85) 85%,
+    var(--bg-dark) 100%
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -327,16 +335,17 @@ ul, ol {
 
 .page-hero h1 {
   font-size: 4rem;
-  color: var(--text);
+  color: #ffffff;
   margin-bottom: 24px;
   letter-spacing: -1px;
   font-weight: 800;
   position: relative;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 .page-hero p {
   font-size: 20px;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.85);
   max-width: 600px;
   margin: 0 auto;
   position: relative;
