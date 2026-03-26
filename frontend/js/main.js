@@ -198,6 +198,375 @@
   });
 
   // ==========================================================================
+  // Product Detail Modal
+  // ==========================================================================
+
+  const PRODUCTS = {
+    'karp': {
+      name: 'Карп',
+      category: 'Аквакультура',
+      image: 'images/products/karp.png',
+      type: 'Полностью экструдированный гранулированный',
+      granules: '4 мм, 6 мм, 8 мм',
+      components: 'Рыбная мука, рыбий жир, растительное масло, кукуруза, пшеница, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
+      vitamins: 'Витамин А 10000 ME, витамин D3 1250 ME, витамин Е 50 мг, витамин С 100 мг',
+      shelfLife: '12 месяцев с даты изготовления',
+      chars: {
+        'Влажность': '8%',
+        'Сырой протеин': '32%',
+        'Сырой жир': '8.5%',
+        'Углеводы': '38%',
+        'Зола': '7.0%',
+        'Клетчатка': '4.0%',
+        'Фосфор': '1.5%',
+        'Общая энергия': '19.2 МДж/кг',
+        'Перевариваемая энергия': '16.1 МДж/кг'
+      }
+    },
+    'osetr': {
+      name: 'Осётр',
+      category: 'Аквакультура',
+      image: 'images/products/osetr.png',
+      type: 'Полностью экструдированный гранулированный',
+      granules: '4 мм, 6 мм, 8 мм, 10 мм',
+      components: 'Рыбная мука, рыбий жир, травяная мука, кукуруза, пшеница, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
+      vitamins: 'Витамин А 10000 ME, витамин D3 1250 ME, витамин Е 50 мг, витамин С 100 мг',
+      shelfLife: '12 месяцев с даты изготовления',
+      chars: {
+        'Влажность': '8.5%',
+        'Сырой протеин': '48%',
+        'Сырой жир': '14%',
+        'Углеводы': '18%',
+        'Зола': '8%',
+        'Клетчатка': '1.5%',
+        'Фосфор': '1.5%',
+        'Общая энергия': '20.34 МДж/кг',
+        'Перевариваемая энергия': '16.6 МДж/кг'
+      }
+    },
+    'forel': {
+      name: 'Форель',
+      category: 'Аквакультура',
+      image: 'images/products/forel.png',
+      type: 'Полностью экструдированный гранулированный',
+      granules: '4 мм, 6 мм, 8 мм, 10 мм',
+      components: 'Рыбная мука, рыбий жир, травяная мука, кукуруза, пшеница, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
+      vitamins: 'Витамин А 10000 ME, витамин D3 1250 ME, витамин Е 50 мг, витамин С 100 мг',
+      shelfLife: '12 месяцев с даты изготовления',
+      chars: {
+        'Влажность': '7%',
+        'Сырой протеин': '50%',
+        'Сырой жир': '16%',
+        'Углеводы': '19%',
+        'Зола': '7.5%',
+        'Клетчатка': '2.3%',
+        'Фосфор': '1.5%',
+        'Общая энергия': '20.2 МДж/кг',
+        'Перевариваемая энергия': '16.23 МДж/кг'
+      }
+    },
+    'pticy-start': {
+      name: 'Птицы Старт',
+      category: 'Птицы',
+      image: 'images/products/pticy-start.png',
+      type: 'Частично экструдированный гранулированный',
+      granules: '3 мм, 4 мм',
+      components: 'Рыбная мука, растительный жир, кукуруза, пшеница, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
+      vitamins: 'Витамин А 10000 ME, витамин D3 1250 ME, витамин Е 50 мг, витамин С 100 мг',
+      shelfLife: '12 месяцев с даты изготовления',
+      chars: {
+        'Влажность': '7%',
+        'Сырой протеин': '26%',
+        'Сырой жир': '8%',
+        'Углеводы': '51%',
+        'Зола': '8%',
+        'Клетчатка': '5.5%',
+        'Фосфор': '1.1%',
+        'Общая энергия': '14.8 МДж/кг',
+        'Перевариваемая энергия': '12.0 МДж/кг'
+      }
+    },
+    'pticy-rost': {
+      name: 'Птицы Рост',
+      category: 'Птицы',
+      image: 'images/products/pticy-rost.png',
+      type: 'Частично экструдированный гранулированный',
+      granules: '3 мм, 4 мм, 5 мм',
+      components: 'Рыбная мука, растительный жир, кукуруза, пшеница, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
+      vitamins: 'Витамин А 10000 ME, витамин D3 1250 ME, витамин Е 50 мг, витамин С 100 мг',
+      shelfLife: '12 месяцев с даты изготовления',
+      chars: {
+        'Влажность': '9%',
+        'Сырой протеин': '19%',
+        'Сырой жир': '6%',
+        'Углеводы': '58%',
+        'Зола': '6.2%',
+        'Клетчатка': '5.1%',
+        'Фосфор': '0.88%',
+        'Общая энергия': '14.1 МДж/кг',
+        'Перевариваемая энергия': '11.5 МДж/кг'
+      }
+    },
+    'telyata': {
+      name: 'Телята',
+      category: 'КРС',
+      image: 'images/products/telyata.png',
+      type: 'Частично экструдированный гранулированный',
+      granules: '4 мм, 5 мм, 6 мм',
+      components: 'Растительный жир, кукуруза, пшеница, ячмень, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
+      vitamins: 'Витамин А 10000 ME, витамин D3 1250 ME, витамин Е 50 мг, витамин С 100 мг',
+      shelfLife: '12 месяцев с даты изготовления',
+      chars: {
+        'Влажность': '7%',
+        'Сырой протеин': '21%',
+        'Сырой жир': '5%',
+        'Углеводы': '55%',
+        'Зола': '8.3%',
+        'Клетчатка': '7.2%',
+        'Фосфор': '0.98%',
+        'Общая энергия': '13.8 МДж/кг',
+        'Перевариваемая энергия': '11.5 МДж/кг'
+      }
+    },
+    'molochnye-korovy': {
+      name: 'Молочные коровы',
+      category: 'КРС',
+      image: 'images/products/molochnye-korovy.png',
+      type: 'Частично экструдированный гранулированный',
+      granules: '5 мм, 6 мм, 8 мм',
+      components: 'Растительный жир, кукуруза, пшеница, ячмень, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
+      vitamins: 'Витамин А 10000 ME, витамин D3 1250 ME, витамин Е 50 мг, витамин С 100 мг',
+      shelfLife: '12 месяцев с даты изготовления',
+      chars: {
+        'Влажность': '7.5%',
+        'Сырой протеин': '23%',
+        'Сырой жир': '5.5%',
+        'Углеводы': '50%',
+        'Зола': '9%',
+        'Клетчатка': '7.2%',
+        'Фосфор': '0.95%',
+        'Общая энергия': '18.8 МДж/кг',
+        'Перевариваемая энергия': '13.5 МДж/кг'
+      }
+    },
+    'krs-otkorm': {
+      name: 'КРС на откорме',
+      category: 'КРС',
+      image: 'images/products/krs-otkorm.png',
+      type: 'Частично экструдированный гранулированный',
+      granules: '5 мм, 6 мм, 8 мм',
+      components: 'Растительный жир, кукуруза, пшеница, ячмень, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, меласс, минералы, витамины, пробиотик',
+      vitamins: 'Витамин А 10000 ME, витамин D3 1250 ME, витамин Е 50 мг, витамин С 100 мг',
+      shelfLife: '12 месяцев с даты изготовления',
+      chars: {
+        'Влажность': '8.5%',
+        'Сырой протеин': '14%',
+        'Сырой жир': '3.5%',
+        'Углеводы': '65%',
+        'Зола': '6.5%',
+        'Клетчатка': '7.2%',
+        'Фосфор': '0.90%',
+        'Общая энергия': '13.8 МДж/кг',
+        'Перевариваемая энергия': '11.5 МДж/кг'
+      }
+    },
+    'molodnyak': {
+      name: 'Молодняк свиней',
+      category: 'Свиньи',
+      image: 'images/products/molodnyak.png',
+      type: 'Частично экструдированный гранулированный',
+      granules: '3 мм, 4 мм',
+      components: 'Рыбная мука, растительный жир, кукуруза, пшеница, ячмень, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
+      vitamins: 'Витамин А 10000 ME, витамин D3 1250 ME, витамин Е 50 мг, витамин С 100 мг',
+      shelfLife: '12 месяцев с даты изготовления',
+      chars: {
+        'Влажность': '8.5%',
+        'Сырой протеин': '19%',
+        'Сырой жир': '7%',
+        'Углеводы': '46%',
+        'Зола': '7.5%',
+        'Клетчатка': '5.2%',
+        'Фосфор': '0.90%',
+        'Общая энергия': '13.9 МДж/кг',
+        'Перевариваемая энергия': '12.5 МДж/кг'
+      }
+    },
+    'svinomatki': {
+      name: 'Свиноматки',
+      category: 'Свиньи',
+      image: 'images/products/svinomatki.png',
+      type: 'Частично экструдированный гранулированный',
+      granules: '4 мм, 5 мм, 6 мм',
+      components: 'Рыбная мука, растительный жир, кукуруза, пшеница, ячмень, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
+      vitamins: 'Витамин А 10000 ME, витамин D3 1250 ME, витамин Е 50 мг, витамин С 100 мг',
+      shelfLife: '12 месяцев с даты изготовления',
+      chars: {
+        'Влажность': '8%',
+        'Сырой протеин': '16%',
+        'Сырой жир': '6%',
+        'Углеводы': '63%',
+        'Зола': '7.5%',
+        'Клетчатка': '5%',
+        'Фосфор': '0.75%',
+        'Общая энергия': '14.0 МДж/кг',
+        'Перевариваемая энергия': '11.5 МДж/кг'
+      }
+    },
+    'svini-otkorm': {
+      name: 'Свиньи на откорме',
+      category: 'Свиньи',
+      image: 'images/products/svini-otkorm.png',
+      type: 'Частично экструдированный гранулированный',
+      granules: '4 мм, 5 мм, 6 мм',
+      components: 'Рыбная мука, растительный жир, кукуруза, пшеница, ячмень, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
+      vitamins: 'Витамин А 10000 ME, витамин D3 1250 ME, витамин Е 50 мг, витамин С 100 мг',
+      shelfLife: '12 месяцев с даты изготовления',
+      chars: {
+        'Влажность': '7%',
+        'Сырой протеин': '14%',
+        'Сырой жир': '5%',
+        'Углеводы': '62%',
+        'Зола': '5.5%',
+        'Клетчатка': '4%',
+        'Фосфор': '0.80%',
+        'Общая энергия': '13.8 МДж/кг',
+        'Перевариваемая энергия': '11.9 МДж/кг'
+      }
+    }
+  };
+
+  const pdOverlay = document.getElementById('pdOverlay');
+  const pdClose = document.getElementById('pdClose');
+  let currentProductName = '';
+
+  /**
+   * Open product detail modal
+   * @param {string} productId - Product key from PRODUCTS object
+   */
+  window.openProductDetail = function(productId) {
+    const product = PRODUCTS[productId];
+    if (!product) return;
+
+    currentProductName = product.name;
+
+    // Populate modal fields
+    document.getElementById('pdImage').src = product.image;
+    document.getElementById('pdImage').alt = product.name;
+    document.getElementById('pdCategory').textContent = product.category;
+    document.getElementById('pdTitle').textContent = product.name;
+    document.getElementById('pdType').textContent = product.type;
+    document.getElementById('pdGranules').textContent = 'Гранулы: ' + product.granules;
+
+    // Build characteristics table
+    var charsHtml = '';
+    var charEntries = Object.entries(product.chars);
+    for (var i = 0; i < charEntries.length; i++) {
+      charsHtml += '<tr><td>' + charEntries[i][0] + '</td><td>' + charEntries[i][1] + '</td></tr>';
+    }
+    document.getElementById('pdCharsBody').innerHTML = charsHtml;
+
+    // Components
+    document.getElementById('pdComponents').textContent = product.components;
+    document.getElementById('pdVitamins').textContent = product.vitamins;
+
+    // Storage
+    document.getElementById('pdShelfLife').textContent = 'Срок хранения: ' + product.shelfLife;
+
+    // Reset to first tab
+    var tabs = document.querySelectorAll('.pd-tab');
+    var contents = document.querySelectorAll('.pd-tab-content');
+    for (var t = 0; t < tabs.length; t++) {
+      tabs[t].classList.remove('active');
+    }
+    for (var c = 0; c < contents.length; c++) {
+      contents[c].classList.remove('active');
+    }
+    tabs[0].classList.add('active');
+    document.getElementById('pdTabChars').classList.add('active');
+
+    // Show modal
+    pdOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  /**
+   * Close product detail modal
+   */
+  function closeProductDetail() {
+    pdOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+    currentProductName = '';
+  }
+
+  // Close on X button
+  if (pdClose) {
+    pdClose.addEventListener('click', closeProductDetail);
+  }
+
+  // Close on overlay click
+  if (pdOverlay) {
+    pdOverlay.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeProductDetail();
+      }
+    });
+  }
+
+  // Tab switching
+  document.querySelectorAll('.pd-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var tabName = this.dataset.tab;
+
+      // Deactivate all tabs
+      document.querySelectorAll('.pd-tab').forEach(function(t) {
+        t.classList.remove('active');
+      });
+      document.querySelectorAll('.pd-tab-content').forEach(function(c) {
+        c.classList.remove('active');
+      });
+
+      // Activate clicked tab
+      this.classList.add('active');
+      var tabMap = {
+        'chars': 'pdTabChars',
+        'components': 'pdTabComponents',
+        'storage': 'pdTabStorage'
+      };
+      var targetEl = document.getElementById(tabMap[tabName]);
+      if (targetEl) {
+        targetEl.classList.add('active');
+      }
+    });
+  });
+
+  // Order button inside product detail -> close detail, open order modal
+  var pdOrderBtn = document.getElementById('pdOrderBtn');
+  if (pdOrderBtn) {
+    pdOrderBtn.addEventListener('click', function() {
+      var name = currentProductName;
+      closeProductDetail();
+      openModal(name);
+    });
+  }
+
+  // Make product cards clickable (card itself, excluding the order button)
+  document.querySelectorAll('.product-card[data-product]').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      // Don't open detail if the order button was clicked
+      if (e.target.closest('.product-btn')) return;
+      var productId = this.dataset.product;
+      openProductDetail(productId);
+    });
+  });
+
+  // Close product detail on Escape key (extend existing handler)
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && pdOverlay.classList.contains('active')) {
+      closeProductDetail();
+    }
+  });
+
+  // ==========================================================================
   // Product Filter
   // ==========================================================================
 
