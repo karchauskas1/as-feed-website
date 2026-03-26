@@ -238,6 +238,33 @@ async function sendTelegramNotification(leadData) {
 // ==========================================================================
 
 /**
+ * Telegram webhook - handle bot commands
+ */
+app.post(`/api/telegram-webhook`, async (req, res) => {
+  try {
+    const { message } = req.body;
+    if (message && message.text === '/myid') {
+      const chatId = message.chat.id;
+      const userId = message.from.id;
+      const name = message.from.first_name || '';
+      const username = message.from.username || 'нет';
+
+      const text = `🆔 *Ваш Telegram ID*\n\nUser ID: \`${userId}\`\nChat ID: \`${chatId}\`\nИмя: ${name}\nUsername: @${username}`;
+
+      await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'Markdown' })
+      });
+    }
+    res.json({ ok: true });
+  } catch (error) {
+    console.error('Telegram webhook error:', error);
+    res.json({ ok: true });
+  }
+});
+
+/**
  * Submit form endpoint
  */
 app.post('/api/submit-form', async (req, res) => {
