@@ -193,6 +193,47 @@ async function sendNotificationEmail(leadData) {
 }
 
 // ==========================================================================
+// Telegram Notifications
+// ==========================================================================
+
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8692769008:AAEL6nmMqH46kvjkHdWszEvCbmevzP2xOT4';
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || '308477378';
+
+async function sendTelegramNotification(leadData) {
+  const { name, phone, email, message, product, volume, formType } = leadData;
+
+  let text = '📋 *Новая заявка с сайта AS-FEED*\n\n';
+  text += `👤 *Имя:* ${name}\n`;
+  text += `📞 *Телефон:* ${phone}\n`;
+  if (email) text += `📧 *Email:* ${email}\n`;
+  if (product) text += `📦 *Продукт:* ${product}\n`;
+  if (volume) text += `⚖️ *Объём:* ${volume}\n`;
+  if (message) text += `💬 *Сообщение:* ${message}\n`;
+  text += `\n🕐 ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}`;
+
+  try {
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: text,
+        parse_mode: 'Markdown'
+      })
+    });
+    const result = await resp.json();
+    if (result.ok) {
+      console.log('Telegram notification sent');
+    } else {
+      console.error('Telegram error:', result.description);
+    }
+  } catch (error) {
+    console.error('Error sending Telegram notification:', error);
+  }
+}
+
+// ==========================================================================
 // API Routes
 // ==========================================================================
 
@@ -223,7 +264,8 @@ app.post('/api/submit-form', async (req, res) => {
       source: req.body.page || 'unknown'
     });
 
-    // Send notification email
+    // Send notifications
+    await sendTelegramNotification(lead);
     await sendNotificationEmail(lead);
 
     console.log('New lead saved:', lead.id);

@@ -444,8 +444,13 @@
    * @param {string} productId - Product key from PRODUCTS object
    */
   window.openProductDetail = function(productId) {
+    console.log('[PD] openProductDetail called with:', productId);
     const product = PRODUCTS[productId];
-    if (!product) return;
+    if (!product) {
+      console.error('[PD] Product NOT FOUND for id:', productId);
+      return;
+    }
+    console.log('[PD] Product found:', product.name);
 
     currentProductName = product.name;
 
@@ -550,11 +555,22 @@
   }
 
   // Make product cards clickable (card itself, excluding the order button)
-  document.querySelectorAll('.product-card[data-product]').forEach(function(card) {
+  var allCards = document.querySelectorAll('.product-card[data-product]');
+  console.log('[PD] Found product cards with data-product:', allCards.length);
+  allCards.forEach(function(card) {
+    card.style.cursor = 'pointer';
     card.addEventListener('click', function(e) {
+      console.log('[PD] Card clicked:', this.dataset.product);
+      console.log('[PD] Click target:', e.target.tagName, e.target.className);
       // Don't open detail if the order button was clicked
-      if (e.target.closest('.product-btn')) return;
+      if (e.target.closest('.product-btn')) {
+        console.log('[PD] Skipped - order button clicked');
+        return;
+      }
       var productId = this.dataset.product;
+      console.log('[PD] Opening product detail for:', productId);
+      console.log('[PD] Product exists in PRODUCTS:', !!PRODUCTS[productId]);
+      console.log('[PD] pdOverlay element:', !!pdOverlay);
       openProductDetail(productId);
     });
   });
