@@ -118,7 +118,19 @@ ul, ol {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
   height: 90px;
+}
+
+.header-inner > .logo {
+  flex-shrink: 0;
+}
+
+.header-platform-logo {
+  display: block;
+  width: 84px;
+  height: auto;
+  flex-shrink: 0;
 }
 
 /* Logo */
@@ -169,6 +181,8 @@ ul, ol {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-left: auto;
+  white-space: nowrap;
 }
 
 .nav-link {
@@ -205,6 +219,7 @@ ul, ol {
 /* Burger Menu */
 .burger {
   display: none;
+  flex-shrink: 0;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
@@ -1099,6 +1114,13 @@ ul, ol {
   margin-bottom: 24px;
 }
 
+.partners-note .partners-support {
+  max-width: 75ch;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text);
+}
+
 /* ==========================================================================
    Contacts Section
    ========================================================================== */
@@ -1829,6 +1851,18 @@ ul, ol {
    Responsive Styles
    ========================================================================== */
 @media (max-width: 1200px) {
+  .nav {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  .header-platform-logo {
+    margin-left: auto;
+  }
+
   .hero-container {
     gap: 60px;
   }
@@ -1898,16 +1932,17 @@ ul, ol {
 }
 
 @media (max-width: 768px) {
-  .nav {
-    display: none;
-  }
-
-  .burger {
-    display: flex;
+  .header-platform-logo {
+    width: 64px;
   }
 
   .header-inner {
+    gap: 12px;
     height: 70px;
+  }
+
+  .partners-note {
+    padding: 28px 20px;
   }
 
   .page {
