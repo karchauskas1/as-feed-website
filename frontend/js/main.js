@@ -205,7 +205,7 @@
     'karp': {
       name: 'Карп',
       category: 'Аквакультура',
-      image: 'images/products/karp.png',
+      image: 'https://as-feed-website.vercel.app/images/products/karp.png',
       type: 'Полностью экструдированный гранулированный',
       granules: '4 мм, 6 мм, 8 мм',
       components: 'Рыбная мука, рыбий жир, растительное масло, кукуруза, пшеница, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
@@ -226,7 +226,7 @@
     'osetr': {
       name: 'Осётр',
       category: 'Аквакультура',
-      image: 'images/products/osetr.png',
+      image: 'https://as-feed-website.vercel.app/images/products/osetr.png',
       type: 'Полностью экструдированный гранулированный',
       granules: '4 мм, 6 мм, 8 мм, 10 мм',
       components: 'Рыбная мука, рыбий жир, травяная мука, кукуруза, пшеница, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
@@ -247,7 +247,7 @@
     'forel': {
       name: 'Форель',
       category: 'Аквакультура',
-      image: 'images/products/forel.png',
+      image: 'https://as-feed-website.vercel.app/images/products/forel.png',
       type: 'Полностью экструдированный гранулированный',
       granules: '4 мм, 6 мм, 8 мм, 10 мм',
       components: 'Рыбная мука, рыбий жир, травяная мука, кукуруза, пшеница, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
@@ -268,7 +268,7 @@
     'pticy-start': {
       name: 'Птицы Старт',
       category: 'Птицы',
-      image: 'images/products/pticy-start.png',
+      image: 'https://as-feed-website.vercel.app/images/products/pticy-start.png',
       type: 'Частично экструдированный гранулированный',
       granules: '3 мм, 4 мм',
       components: 'Рыбная мука, растительный жир, кукуруза, пшеница, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
@@ -289,7 +289,7 @@
     'pticy-rost': {
       name: 'Птицы Рост',
       category: 'Птицы',
-      image: 'images/products/pticy-rost.png',
+      image: 'https://as-feed-website.vercel.app/images/products/pticy-rost.png',
       type: 'Частично экструдированный гранулированный',
       granules: '3 мм, 4 мм, 5 мм',
       components: 'Рыбная мука, растительный жир, кукуруза, пшеница, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
@@ -310,7 +310,7 @@
     'telyata': {
       name: 'Телята',
       category: 'КРС',
-      image: 'images/products/telyata.png',
+      image: 'https://as-feed-website.vercel.app/images/products/telyata.png',
       type: 'Частично экструдированный гранулированный',
       granules: '4 мм, 5 мм, 6 мм',
       components: 'Растительный жир, кукуруза, пшеница, ячмень, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
@@ -331,7 +331,7 @@
     'molochnye-korovy': {
       name: 'Молочные коровы',
       category: 'КРС',
-      image: 'images/products/molochnye-korovy.png',
+      image: 'https://as-feed-website.vercel.app/images/products/molochnye-korovy.png',
       type: 'Частично экструдированный гранулированный',
       granules: '5 мм, 6 мм, 8 мм',
       components: 'Растительный жир, кукуруза, пшеница, ячмень, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
@@ -352,7 +352,7 @@
     'krs-otkorm': {
       name: 'КРС на откорме',
       category: 'КРС',
-      image: 'images/products/krs-otkorm.png',
+      image: 'https://as-feed-website.vercel.app/images/products/krs-otkorm.png',
       type: 'Частично экструдированный гранулированный',
       granules: '5 мм, 6 мм, 8 мм',
       components: 'Растительный жир, кукуруза, пшеница, ячмень, шрот подсолнечный, шрот рапсовый, дрожжи кормовые, меласс, минералы, витамины, пробиотик',
@@ -373,7 +373,7 @@
     'molodnyak': {
       name: 'Молодняк свиней',
       category: 'Свиньи',
-      image: 'images/products/molodnyak.png',
+      image: 'https://as-feed-website.vercel.app/images/products/molodnyak.png',
       type: 'Частично экструдированный гранулированный',
       granules: '3 мм, 4 мм',
       components: 'Рыбная мука, растительный жир, кукуруза, пшеница, ячмень, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
@@ -394,7 +394,7 @@
     'svinomatki': {
       name: 'Свиноматки',
       category: 'Свиньи',
-      image: 'images/products/svinomatki.png',
+      image: 'https://as-feed-website.vercel.app/images/products/svinomatki.png',
       type: 'Частично экструдированный гранулированный',
       granules: '4 мм, 5 мм, 6 мм',
       components: 'Рыбная мука, растительный жир, кукуруза, пшеница, ячмень, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',
@@ -415,7 +415,7 @@
     'svini-otkorm': {
       name: 'Свиньи на откорме',
       category: 'Свиньи',
-      image: 'images/products/svini-otkorm.png',
+      image: 'https://as-feed-website.vercel.app/images/products/svini-otkorm.png',
       type: 'Частично экструдированный гранулированный',
       granules: '4 мм, 5 мм, 6 мм',
       components: 'Рыбная мука, растительный жир, кукуруза, пшеница, ячмень, шрот рапсовый, дрожжи кормовые, минералы, витамины, пробиотик',

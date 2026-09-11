@@ -15,16 +15,19 @@
   <meta property="og:locale" content="ru_RU">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png">
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="https://as-feed-website.vercel.app/images/favicon-64.png">
+  <link rel="apple-touch-icon" href="https://as-feed-website.vercel.app/images/apple-touch-icon.png">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Static assets use the Vercel hostname to avoid interrupted downloads on custom domains. -->
+  <link rel="preconnect" href="https://as-feed-website.vercel.app">
+
   <!-- Styles -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://as-feed-website.vercel.app/css/styles.css">
 
   <!-- Schema.org -->
   <script type="application/ld+json">
@@ -52,7 +55,7 @@
       <div class="header-inner">
         <a href="#home" class="logo" onclick="showPage('home')">
           <div class="logo-icon">
-            <img src="images/logo-icon.png" alt="AS-FEED" class="logo-img" />
+            <img src="https://as-feed-website.vercel.app/images/logo-icon.png" alt="AS-FEED" class="logo-img" />
           </div>
           <div class="logo-text-wrap">
             <div class="logo-text">AS-FEED</div>
@@ -69,7 +72,7 @@
           <button class="nav-cta" onclick="showPage('contacts')">Оставить заявку</button>
         </nav>
 
-        <img class="header-platform-logo" src="images/partners/university-platform.png" width="1888" height="1472" alt="Платформа университетского технологического предпринимательства">
+        <img class="header-platform-logo" src="https://as-feed-website.vercel.app/images/partners/university-platform.png" width="1888" height="1472" alt="Платформа университетского технологического предпринимательства">
 
         <button class="burger" id="burger" aria-label="Меню">
           <span></span>
@@ -117,7 +120,7 @@
           </div>
           <div class="hero-visual">
             <div class="hero-img">
-              <img src="images/products/forel.png" alt="Корм для форели" style="width:140%;height:140%;object-fit:contain;" />
+              <img src="https://as-feed-website.vercel.app/images/products/forel.png" alt="Корм для форели" style="width:140%;height:140%;object-fit:contain;" />
             </div>
             <div class="hero-float-card hero-float-1">
               <div class="hero-float-value">6+</div>
@@ -159,7 +162,7 @@
           <div class="featured-grid">
             <div class="featured-card">
               <div class="featured-icon">
-                <img src="images/products/forel.png" alt="Форель" />
+                <img src="https://as-feed-website.vercel.app/images/products/forel.png" alt="Форель" />
               </div>
               <h3>Форель</h3>
               <p>Полнорационный корм для форели</p>
@@ -167,7 +170,7 @@
             </div>
             <div class="featured-card">
               <div class="featured-icon">
-                <img src="images/products/karp.png" alt="Карп" />
+                <img src="https://as-feed-website.vercel.app/images/products/karp.png" alt="Карп" />
               </div>
               <h3>Карп</h3>
               <p>Универсальный корм для карповых</p>
@@ -175,7 +178,7 @@
             </div>
             <div class="featured-card">
               <div class="featured-icon">
-                <img src="images/products/telyata.png" alt="Телята" />
+                <img src="https://as-feed-website.vercel.app/images/products/telyata.png" alt="Телята" />
               </div>
               <h3>Телята</h3>
               <p>Специальный корм для молодняка КРС</p>
@@ -183,7 +186,7 @@
             </div>
             <div class="featured-card">
               <div class="featured-icon">
-                <img src="images/products/pticy-start.png" alt="Птицы старт" />
+                <img src="https://as-feed-website.vercel.app/images/products/pticy-start.png" alt="Птицы старт" />
               </div>
               <h3>Птицы старт</h3>
               <p>Стартовый корм для птиц</p>
@@ -209,7 +212,7 @@
               </button>
             </div>
             <div class="custom-recipe-visual">
-              <img src="images/custom-recipe.jpg" alt="Индивидуальный рецепт корма" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);" />
+              <img src="https://as-feed-website.vercel.app/images/custom-recipe.jpg" alt="Индивидуальный рецепт корма" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);" />
             </div>
           </div>
         </div>
@@ -361,7 +364,7 @@
           <!-- Карп -->
           <article class="product-card" data-category="aqua" data-product="karp">
             <div class="product-image">
-              <img src="images/products/karp.png" alt="Корм для Карпа" />
+              <img src="https://as-feed-website.vercel.app/images/products/karp.png" alt="Корм для Карпа" />
               <span class="product-badge">Хит продаж</span>
             </div>
             <div class="product-content">
@@ -389,7 +392,7 @@
           <!-- Осётр -->
           <article class="product-card" data-category="aqua" data-product="osetr">
             <div class="product-image">
-              <img src="images/products/osetr.png" alt="Корм для Осётра" />
+              <img src="https://as-feed-website.vercel.app/images/products/osetr.png" alt="Корм для Осётра" />
             </div>
             <div class="product-content">
               <div class="product-category">Аквакультура</div>
@@ -416,7 +419,7 @@
           <!-- Форель -->
           <article class="product-card" data-category="aqua" data-product="forel">
             <div class="product-image">
-              <img src="images/products/forel.png" alt="Корм для Форели" />
+              <img src="https://as-feed-website.vercel.app/images/products/forel.png" alt="Корм для Форели" />
             </div>
             <div class="product-content">
               <div class="product-category">Аквакультура</div>
@@ -444,7 +447,7 @@
           <!-- Птицы старт -->
           <article class="product-card" data-category="poultry" data-product="pticy-start">
             <div class="product-image">
-              <img src="images/products/pticy-start.png" alt="Корм для Птицы старт" />
+              <img src="https://as-feed-website.vercel.app/images/products/pticy-start.png" alt="Корм для Птицы старт" />
             </div>
             <div class="product-content">
               <div class="product-category">Птицы</div>
@@ -471,7 +474,7 @@
           <!-- Птицы рост -->
           <article class="product-card" data-category="poultry" data-product="pticy-rost">
             <div class="product-image">
-              <img src="images/products/pticy-rost.png" alt="Корм для Птицы рост" />
+              <img src="https://as-feed-website.vercel.app/images/products/pticy-rost.png" alt="Корм для Птицы рост" />
             </div>
             <div class="product-content">
               <div class="product-category">Птицы</div>
@@ -499,7 +502,7 @@
           <!-- Телята -->
           <article class="product-card" data-category="cattle" data-product="telyata">
             <div class="product-image">
-              <img src="images/products/telyata.png" alt="Корм для Телят" />
+              <img src="https://as-feed-website.vercel.app/images/products/telyata.png" alt="Корм для Телят" />
             </div>
             <div class="product-content">
               <div class="product-category">КРС</div>
@@ -526,7 +529,7 @@
           <!-- Молочные коровы -->
           <article class="product-card" data-category="cattle" data-product="molochnye-korovy">
             <div class="product-image">
-              <img src="images/products/molochnye-korovy.png" alt="Корм для Молочных Коров" />
+              <img src="https://as-feed-website.vercel.app/images/products/molochnye-korovy.png" alt="Корм для Молочных Коров" />
             </div>
             <div class="product-content">
               <div class="product-category">КРС</div>
@@ -553,7 +556,7 @@
           <!-- КРС на откорме -->
           <article class="product-card" data-category="cattle" data-product="krs-otkorm">
             <div class="product-image">
-              <img src="images/products/krs-otkorm.png" alt="Корм для КРС на откорме" />
+              <img src="https://as-feed-website.vercel.app/images/products/krs-otkorm.png" alt="Корм для КРС на откорме" />
             </div>
             <div class="product-content">
               <div class="product-category">КРС</div>
@@ -581,7 +584,7 @@
           <!-- Молодняк свиней -->
           <article class="product-card" data-category="pigs" data-product="molodnyak">
             <div class="product-image">
-              <img src="images/products/molodnyak.png" alt="Корм для Молодняка Свиней" />
+              <img src="https://as-feed-website.vercel.app/images/products/molodnyak.png" alt="Корм для Молодняка Свиней" />
             </div>
             <div class="product-content">
               <div class="product-category">Свиньи</div>
@@ -608,7 +611,7 @@
           <!-- Свиноматки -->
           <article class="product-card" data-category="pigs" data-product="svinomatki">
             <div class="product-image">
-              <img src="images/products/svinomatki.png" alt="Корм для Свиноматок" />
+              <img src="https://as-feed-website.vercel.app/images/products/svinomatki.png" alt="Корм для Свиноматок" />
             </div>
             <div class="product-content">
               <div class="product-category">Свиньи</div>
@@ -635,7 +638,7 @@
           <!-- Свиньи на откорме -->
           <article class="product-card" data-category="pigs" data-product="svini-otkorm">
             <div class="product-image">
-              <img src="images/products/svini-otkorm.png" alt="Корм для Свиней на Откорме" />
+              <img src="https://as-feed-website.vercel.app/images/products/svini-otkorm.png" alt="Корм для Свиней на Откорме" />
             </div>
             <div class="product-content">
               <div class="product-category">Свиньи</div>
@@ -677,21 +680,21 @@
           <div class="partners-grid">
             <a href="https://fasie.ru" target="_blank" rel="noopener" class="partner-card">
               <div class="partner-logo">
-                <img src="images/partners/fsi.png" alt="Фонд Содействия Инновациям" />
+                <img src="https://as-feed-website.vercel.app/images/partners/fsi.png" alt="Фонд Содействия Инновациям" />
               </div>
               <div class="partner-name">ФСИ</div>
               <div class="partner-type">Фонд Содействия Инновациям</div>
             </a>
             <a href="https://economy.gov.ru" target="_blank" rel="noopener" class="partner-card">
               <div class="partner-logo">
-                <img src="images/partners/minek.png" alt="Министерство экономического развития" />
+                <img src="https://as-feed-website.vercel.app/images/partners/minek.png" alt="Министерство экономического развития" />
               </div>
               <div class="partner-name">МинЭК</div>
               <div class="partner-type">Министерство экономического развития</div>
             </a>
             <a href="https://stgau.ru" target="_blank" rel="noopener" class="partner-card">
               <div class="partner-logo">
-                <img src="images/partners/stgau.png" alt="Ставропольский государственный аграрный университет" />
+                <img src="https://as-feed-website.vercel.app/images/partners/stgau.png" alt="Ставропольский государственный аграрный университет" />
               </div>
               <div class="partner-name">СтГАУ</div>
               <div class="partner-type">Ставропольский государственный аграрный университет</div>
@@ -812,7 +815,7 @@
         <div class="footer-brand">
           <a href="#home" class="logo" onclick="showPage('home')">
             <div class="logo-icon">
-              <img src="images/logo-icon.png" alt="AS-FEED" class="logo-img" />
+              <img src="https://as-feed-website.vercel.app/images/logo-icon.png" alt="AS-FEED" class="logo-img" />
             </div>
             <div class="logo-text-wrap">
               <div class="logo-text">AS-FEED</div>
@@ -979,6 +982,6 @@
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="https://as-feed-website.vercel.app/js/main.js"></script>
 </body>
 </html>
