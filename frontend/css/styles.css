@@ -126,11 +126,38 @@ ul, ol {
   flex-shrink: 0;
 }
 
+.header-support-logos {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
 .header-platform-logo {
   display: block;
   width: 84px;
   height: auto;
   flex-shrink: 0;
+}
+
+.header-fsi-link {
+  display: flex;
+  align-items: center;
+  width: 84px;
+  flex-shrink: 0;
+}
+
+.header-fsi-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.header-fsi-link:focus-visible,
+.funding-logo-link:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
 }
 
 /* Logo */
@@ -603,7 +630,7 @@ ul, ol {
    Features Section
    ========================================================================== */
 .features-section {
-  padding: 120px 0;
+  padding: 120px 0 48px;
   background: var(--bg-card);
   position: relative;
 }
@@ -687,6 +714,53 @@ ul, ol {
 .feature-card p {
   font-size: 16px;
   color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* Funding on the home page */
+.funding-section {
+  padding: 48px 0 120px;
+  background: rgba(5,150,105,0.05);
+}
+
+.funding-card {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 64px 72px;
+  text-align: center;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.funding-title {
+  display: table;
+  margin: 0 auto 32px;
+}
+
+.funding-logo-link {
+  display: block;
+  width: min(100%, 350px);
+  margin: 0 auto 36px;
+  transition: transform var(--transition);
+}
+
+.funding-logo-link:hover {
+  transform: translateY(-3px);
+}
+
+.funding-logo-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.funding-text {
+  max-width: 780px;
+  margin: 0 auto;
+  color: var(--text);
+  font-size: 19px;
   line-height: 1.7;
 }
 
@@ -1859,7 +1933,7 @@ ul, ol {
     display: flex;
   }
 
-  .header-platform-logo {
+  .header-support-logos {
     margin-left: auto;
   }
 
@@ -1933,7 +2007,19 @@ ul, ol {
 
 @media (max-width: 768px) {
   .header-platform-logo {
-    width: 64px;
+    width: 58px;
+  }
+
+  .header-fsi-link {
+    width: 68px;
+  }
+
+  .funding-card {
+    padding: 48px 32px;
+  }
+
+  .funding-text {
+    font-size: 16px;
   }
 
   .header-inner {
@@ -2108,6 +2194,47 @@ ul, ol {
 }
 
 @media (max-width: 480px) {
+  .header-inner {
+    gap: 8px;
+  }
+
+  .header-inner > .logo {
+    gap: 8px;
+  }
+
+  .header-support-logos {
+    gap: 4px;
+  }
+
+  .header-platform-logo {
+    width: 42px;
+  }
+
+  .header-fsi-link {
+    width: 52px;
+  }
+
+  .burger {
+    width: 28px;
+  }
+
+  .funding-card {
+    padding: 36px 20px;
+  }
+
+  .funding-logo-link {
+    width: min(100%, 280px);
+    margin-bottom: 28px;
+  }
+
+  .funding-title {
+    margin-bottom: 24px;
+  }
+
+  .funding-text {
+    font-size: 15px;
+  }
+
   .container {
     padding: 0 16px;
   }
@@ -2117,16 +2244,17 @@ ul, ol {
   }
 
   .logo-text {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .logo-sub {
-    font-size: 10px;
+    font-size: 8px;
+    letter-spacing: 1px;
   }
 
   .logo-icon {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
   }
 
   .page-hero h1 {

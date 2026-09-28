@@ -23,11 +23,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Static assets use the Vercel hostname to avoid interrupted downloads on custom domains. -->
+  <!-- Published assets use the Vercel hostname to avoid interrupted downloads on custom domains. -->
   <link rel="preconnect" href="https://as-feed-website.vercel.app">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="https://as-feed-website.vercel.app/css/styles.css">
+  <link id="site-styles" rel="stylesheet" href="css/styles.css">
+  <script>
+    // Keep published styles on the technical hostname; use local styles for file previews.
+    if (location.protocol !== 'file:') {
+      document.getElementById('site-styles').href = 'https://as-feed-website.vercel.app/css/styles.css';
+    }
+  </script>
 
   <!-- Schema.org -->
   <script type="application/ld+json">
@@ -72,7 +78,12 @@
           <button class="nav-cta" onclick="showPage('contacts')">Оставить заявку</button>
         </nav>
 
-        <img class="header-platform-logo" src="https://as-feed-website.vercel.app/images/partners/university-platform.png" width="1888" height="1472" alt="Платформа университетского технологического предпринимательства">
+        <div class="header-support-logos">
+          <img class="header-platform-logo" src="https://as-feed-website.vercel.app/images/partners/university-platform.png" width="1888" height="1472" alt="Платформа университетского технологического предпринимательства">
+          <a class="header-fsi-link" href="https://fasie.ru/" target="_blank" rel="noopener noreferrer" aria-label="Сайт Фонда содействия инновациям">
+            <img src="images/partners/fsi-official.png" width="622" height="321" alt="Фонд содействия инновациям">
+          </a>
+        </div>
 
         <button class="burger" id="burger" aria-label="Меню">
           <span></span>
@@ -258,6 +269,19 @@
               <h3>Доставка по всей России</h3>
               <p>Надёжная логистика и доставка продукции в любой регион Российской Федерации</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Funding Section -->
+      <section class="funding-section" aria-labelledby="funding-title">
+        <div class="container">
+          <div class="funding-card">
+            <h2 id="funding-title" class="section-tag funding-title">Финансирования</h2>
+            <a class="funding-logo-link" href="https://fasie.ru/" target="_blank" rel="noopener noreferrer" aria-label="Перейти на сайт Фонда содействия инновациям">
+              <img src="images/partners/fsi-official.png" width="622" height="321" alt="Фонд содействия инновациям">
+            </a>
+            <p class="funding-text">Проект реализован при поддержке Фонда содействия инновациям в рамках программы «Студенческий стартап» мероприятия «Платформа университетского технологического предпринимательства» федерального проекта «Технологии».</p>
           </div>
         </div>
       </section>
